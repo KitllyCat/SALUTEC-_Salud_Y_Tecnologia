@@ -5,7 +5,7 @@ using namespace std;
 
 int main() {
 	
-	//menu principal
+	cout<<"SALUTEC"<<endl;	
 	
 	return 0;
 }
