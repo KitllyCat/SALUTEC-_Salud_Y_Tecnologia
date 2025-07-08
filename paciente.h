@@ -1,9 +1,12 @@
 #ifndef PACIENTE_H
 #define PACIENTE_H
-
-#include<string>
+#include <iostream>
+#include <string>
+#include <windows.h>
 using namespace std;
 
+const int Cant=100;	
+		
 struct Paciente{
 	string nombre;
 	int DNI;
@@ -14,6 +17,7 @@ struct Paciente{
 	string direccion;
 };
 
-void Agregar_Paciente(Paciente Registro[], int &cont);
+void Agregar_Paciente(Registro, cont);
+void Eliminar_Paciente(Registro, cont);
 
 #endif
