@@ -1,6 +1,3 @@
-#include<iostream>
-#include<string>
-#include <windows.h>
 #inclde "paciente.h"
 
 using namespace std;
@@ -18,33 +15,40 @@ R_Paciente[9]={
 	{"Diego Jaramillo", "15", "F", "O-", "921957740", "Miraflores Av. Torres"},
 
 };
+    Paciente Registro[Cant];
+    int cont=10;
 
-Paciente Registro[Cant];
-
-void Agregar_Paciente(Paciente Registro[], int &cont){
+	void Agregar_Paciente(Paciente Registro[], int &cont){
 	cout << "==========================================================" << endl;
     cout << "                REGISTRO DE PACIENTE" << endl;
     cout << "==========================================================" << endl;
     cout<<endl;
     
+    cout<<cont+1<<".- ";
     cout<<"Nombre: ";
-    cout<<cont+1<<".-: ";
     cin.ignore();
     getline(cin, Registro[cont].nombre);
+    cout<<endl;
+    cout<<"DNI: ";
+    cin>>Registro[cont].DNI;
     cout<<endl;
     cout<<"Edad: ";
     cin>>Registro[cont].edad;
     cout<<endl;
     cout<<"Sexo: ";
+    cin.ignore();
     getline(cin, Registro[cont].sexo);
     cout<<endl;
     cout<<"Tipo de sangre: ";
+    cin.ignore();
     getline(cin, Registro[cont].T_sangre);
-    cout<<"Número: ";
     cout<<endl;
+    cout<<"Número: ";
     cin>>Registro[cont].numero;
+    cout<<endl;
     cout<<"Dirección: ";
-    cgetline(cin, Registro[cont].direccion);
+    cin.ignore();
+    getline(cin, Registro[cont].direccion);
 	cout<<endl;
 	
 	cont++;
@@ -52,6 +56,35 @@ void Agregar_Paciente(Paciente Registro[], int &cont){
 	cout<<endl;
 }
 
-int main(){
+void Eliminar_Paciente(Paciente Registro[], int &cont){
 	
+	if(cont!=0){
+	string paciente;
+	bool eliminar = false;
+	cout<<"==========================================================" << endl;
+    cout<<"                   ELIMINAR PACIENTE" << endl;
+    cout<<"==========================================================" << endl;	
+    cout<<"Ingrese el nombre del paciente: ";
+    cin.ignore();
+    getline(cin, paciente);
+		
+	for(int i=0; i<cont; i++){
+		if(Registro[i].nombre == paciente){
+			for(int j=i; j<cont-1; j++){
+				Registro[j] = Registro[j+1];
+			}
+			cont--;
+			cout<<endl;
+	        cout<<"-------------------Paciente eliminado---------------------"<<endl;
+	        cout<<endl;
+			eliminar = true;
+			break;
+			}
+		}
+		if(!eliminar){
+			cout<<"El paciente no esta registrado"<<endl;
+		}
+	}else{
+		cout<<"No hay registro de pacientes"<<endl;
+	}
 }
