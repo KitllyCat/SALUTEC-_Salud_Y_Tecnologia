@@ -1,4 +1,4 @@
-#inclde "paciente.h"
+#include "paciente.h"
 
 using namespace std;
 
@@ -101,7 +101,32 @@ void Actualizar_Nombre(Paciente Registro[], int &cont){
 			cout<<"Actualizar nombre: ";
 			getline(cin, Registro[i].nombre);
 			cout<<endl;
-			cout<<"-----------Paciente actualizado------------"<<endl<<endl;
+			cout<<"-----------Dato actualizado------------"<<endl<<endl;
+			
+			act = true;
+			break;
+			}
+		}		
+	if(!act){
+		cout<<endl;
+		cout<<"-------------------Paciente no encontrado---------------------"<<endl;
+		cout<<endl;
+	    }
+}
+
+void Actualizar_Edad(Paciente Registro[], int &cont){  
+	string Nnombre;
+	cout<<"Ingrese el nombre : ";
+	cin.ignore();
+    getline(cin,Nnombre);
+    cout<<endl;
+    bool act =false;
+    for(int i=0;i<cont;i++){
+		if(Registro[i].nombre == Nnombre){
+			cout<<"Actualizar edad: ";
+			cin>> Registro[i].edad;
+			cout<<endl;
+			cout<<"-----------Dato actualizado------------"<<endl<<endl;
 			
 			act = true;
 			break;
@@ -125,17 +150,17 @@ void Actualizar_Paciente(Paciente Registro[], int &cont){
 		char dato;
 		do{
 			do{
-			cout<<endl;	
-			cout<<"------------DATOS A ACTUALIZAR----------"<<endl<<endl;
-			cout << "a)Nombre" << endl;
-			cout << "b)DNI" <<endl;
-            cout << "c)Edad" <<endl;
-            cout << "d)Sexo" <<endl;
-            cout << "e)Tipo de sangre" <<endl; 
-            cout << "f)Número de celular" <<endl;
-            cout << "g)Dirección"<<endl<<endl;
-            cout <<"Alternativa: ";
-            cin >> dato;
+		cout<<endl;	
+		cout<<"------------DATOS A ACTUALIZAR----------"<<endl<<endl;
+		cout << "a)Nombre" << endl;
+		cout << "b)DNI" <<endl;
+        cout << "c)Edad" <<endl;
+        cout << "d)Sexo" <<endl;
+        cout << "e)Tipo de sangre" <<endl; 
+        cout << "f)Número de celular" <<endl;
+        cout << "g)Dirección"<<endl<<endl;
+        cout <<"Alternativa: ";
+        cin >> dato;
 						
 		switch (dato) {
 			case 'a':{
@@ -149,7 +174,7 @@ void Actualizar_Paciente(Paciente Registro[], int &cont){
 			}
 			
 			case 'c':{
-				
+				Actualizar_Edad(Registro, cont);
 				break;
 			}
 				
