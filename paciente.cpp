@@ -89,63 +89,87 @@ void Eliminar_Paciente(Paciente Registro[], int &cont){
 	}
 }
 
+void Actualizar_Nombre(Paciente Registro[], int &cont){  
+	string Nnombre;
+	cout<<"Ingrese el nombre : ";
+	cin.ignore();
+    getline(cin,Nnombre);
+    cout<<endl;
+    bool act =false;
+    for(int i=0;i<cont;i++){
+		if(Registro[i].nombre == Nnombre){
+			cout<<"Actualizar nombre: ";
+			getline(cin, Registro[i].nombre);
+			cout<<endl;
+			cout<<"-----------Paciente actualizado------------"<<endl<<endl;
+			
+			act = true;
+			break;
+			}
+		}		
+	if(!act){
+		cout<<endl;
+		cout<<"-------------------Paciente no encontrado---------------------"<<endl;
+		cout<<endl;
+	    }
+}
+
 void Actualizar_Paciente(Paciente Registro[], int &cont){
-	
+	char RPTA;
 	if(cont!=0){
-	string paciente;
-	bool act = false;
+	
 	cout<<"==========================================================" << endl;
     cout<<"                   ACTUALIZAR PACIENTE" << endl;
     cout<<"==========================================================" << endl;	
-    cout<<"Ingrese el nombre del paciente: ";
-    cin.ignore();
-    getline(cin, paciente);
-		
-	for(int i=0; i<cont; i++){
-		if(Registro[i].nombre == paciente){
-				char dato;
-				do{
-				cout<<endl;	
-				cout<<"------------DATOS OPCIONES----------"<<endl<<endl;
-				cout << "a)Nombre" << endl;
-				cout << "b)DNI" <<endl;
-                cout << "c)Edad" <<endl;
-                cout << "d)Sexo" <<endl;
-                cout << "e)Tipo de sangre" <<endl; 
-                cout << "f)Número celular" <<endl;
-                cout << "g)Dirección"<<endl<<endl;
-                cout <<"Alternativa: ";
-                cin >> dato;
-				
-				}while(dato != 'g');
-				
+    
+		char dato;
+		do{
+			do{
+			cout<<endl;	
+			cout<<"------------DATOS A ACTUALIZAR----------"<<endl<<endl;
+			cout << "a)Nombre" << endl;
+			cout << "b)DNI" <<endl;
+            cout << "c)Edad" <<endl;
+            cout << "d)Sexo" <<endl;
+            cout << "e)Tipo de sangre" <<endl; 
+            cout << "f)Número de celular" <<endl;
+            cout << "g)Dirección"<<endl<<endl;
+            cout <<"Alternativa: ";
+            cin >> dato;
+						
 		switch (dato) {
 			case 'a':{
-				
+				Actualizar_Nombre(Registro, cont);
 				break;
 			}
 				
 			case 'b':{
+				
 				break;
 			}
 			
 			case 'c':{
+				
 				break;
 			}
 				
 			case 'd':{
+				
 				break;
 			}
 			
 			case 'e':{
+				
 				break;
 			}
 			
 			case 'f':{
+				
 				break;
 			}
 				
 			case 'g':{
+			
 				break;
 			}
 				
@@ -155,20 +179,14 @@ void Actualizar_Paciente(Paciente Registro[], int &cont){
 				cout<<endl;
 				break;
 			}
-					
 		}
-		cout<<endl;
-		cout<<"-----------Paciente actualizado------------"<<endl<<endl;
-		act = true;
-		break;				
-		}
-	}
-		if(!act){
-			cout<<"Paciente no encontrado."<<endl;
-			cout<<endl;
-		}
-	}else{
-		cout<<"No hay registro de pacientes"<<endl;
-		cout<<endl;
+	cout<<"Desea actualizar otro dato? (S/N)"<<endl;
+	cin>>RPTA;
+	RPTA=toupper(RPTA);	
+	}while(RPTA== 'S');
+}while(dato != 'g');
+}else{
+	cout<<"No hay registro de pacientes"<<endl;
+	cout<<endl;
 	}
 }
