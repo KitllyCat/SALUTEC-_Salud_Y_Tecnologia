@@ -88,3 +88,87 @@ void Eliminar_Paciente(Paciente Registro[], int &cont){
 		cout<<"No hay registro de pacientes"<<endl;
 	}
 }
+
+void Actualizar_Paciente(Paciente Registro[], int &cont){
+	
+	if(cont!=0){
+	string paciente;
+	bool act = false;
+	cout<<"==========================================================" << endl;
+    cout<<"                   ACTUALIZAR PACIENTE" << endl;
+    cout<<"==========================================================" << endl;	
+    cout<<"Ingrese el nombre del paciente: ";
+    cin.ignore();
+    getline(cin, paciente);
+		
+	for(int i=0; i<cont; i++){
+		if(Registro[i].nombre == paciente){
+				char dato;
+				do{
+				cout<<endl;	
+				cout<<"------------DATOS OPCIONES----------"<<endl<<endl;
+				cout << "a)Nombre" << endl;
+				cout << "b)DNI" <<endl;
+                cout << "c)Edad" <<endl;
+                cout << "d)Sexo" <<endl;
+                cout << "e)Tipo de sangre" <<endl; 
+                cout << "f)Número celular" <<endl;
+                cout << "g)Dirección"<<endl<<endl;
+                cout <<"Alternativa: ";
+                cin >> dato;
+				
+				}while(dato != 'g');
+				
+		switch (dato) {
+			case 'a':{
+				
+				break;
+			}
+				
+			case 'b':{
+				break;
+			}
+			
+			case 'c':{
+				break;
+			}
+				
+			case 'd':{
+				break;
+			}
+			
+			case 'e':{
+				break;
+			}
+			
+			case 'f':{
+				break;
+			}
+				
+			case 'g':{
+				break;
+			}
+				
+			default:{
+				cout<<endl;
+				cout<<"-------Alternativa invalida--------"<<endl;
+				cout<<endl;
+				break;
+			}
+					
+		}
+		cout<<endl;
+		cout<<"-----------Paciente actualizado------------"<<endl<<endl;
+		act = true;
+		break;				
+		}
+	}
+		if(!act){
+			cout<<"Paciente no encontrado."<<endl;
+			cout<<endl;
+		}
+	}else{
+		cout<<"No hay registro de pacientes"<<endl;
+		cout<<endl;
+	}
+}
