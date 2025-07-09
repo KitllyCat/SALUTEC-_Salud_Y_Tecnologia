@@ -11,13 +11,14 @@ struct Paciente{
 	string nombre;
 	int DNI;
 	int edad;
-	string sexo;
+	int sexo;
 	string T_sangre;
 	int numero;
 	string direccion;
 };
 
-void Agregar_Paciente(Registro, cont);
-void Eliminar_Paciente(Registro, cont);
+void Agregar_Paciente(Registro[], int cont);
+void Eliminar_Paciente(Registro[], int cont);
+void Actualizar_Paciente(Registro[], int cont);
 
 #endif
