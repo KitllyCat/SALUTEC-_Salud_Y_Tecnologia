@@ -139,6 +139,31 @@ void Actualizar_Edad(Paciente Registro[], int &cont){
 	    }
 }
 
+void Actualizar_TSangre(Paciente Registro[], int &cont){  
+	string Nnombre;
+	cout<<"Ingrese el nombre : ";
+	cin.ignore();
+    getline(cin,Nnombre);
+    cout<<endl;
+    bool act =false;
+    for(int i=0;i<cont;i++){
+		if(Registro[i].nombre == Nnombre){
+			cout<<"Actualizar Tipo de Sangre: ";
+			getline(cin, Registro[i].T_sangre);
+			cout<<endl;
+			cout<<"-----------Dato actualizado------------"<<endl<<endl;
+			
+			act = true;
+			break;
+			}
+		}		
+	if(!act){
+		cout<<endl;
+		cout<<"-------------------Paciente no encontrado---------------------"<<endl;
+		cout<<endl;
+	    }
+}
+
 void Actualizar_Paciente(Paciente Registro[], int &cont){
 	char RPTA;
 	if(cont!=0){
@@ -184,7 +209,7 @@ void Actualizar_Paciente(Paciente Registro[], int &cont){
 			}
 			
 			case 'e':{
-				
+				Actualizar_TSangre(Registro, cont);
 				break;
 			}
 			
@@ -205,7 +230,7 @@ void Actualizar_Paciente(Paciente Registro[], int &cont){
 				break;
 			}
 		}
-	cout<<"Desea actualizar otro dato? (S/N)"<<endl;
+	cout<<"Desea actualizar otro dato? (S/N): ";
 	cin>>RPTA;
 	RPTA=toupper(RPTA);	
 	}while(RPTA== 'S');
