@@ -139,7 +139,7 @@ void Actualizar_Edad(Paciente Registro[], int &cont){
 	    }
 }
 
-void Actualizar_TSangre(Paciente Registro[], int &cont){  
+void Actualizar_Numero(Paciente Registro[], int &cont){  
 	string Nnombre;
 	cout<<"Ingrese el nombre : ";
 	cin.ignore();
@@ -148,8 +148,8 @@ void Actualizar_TSangre(Paciente Registro[], int &cont){
     bool act =false;
     for(int i=0;i<cont;i++){
 		if(Registro[i].nombre == Nnombre){
-			cout<<"Actualizar Tipo de Sangre: ";
-			getline(cin, Registro[i].T_sangre);
+			cout<<"Actualizar número: ";
+			cin>> Registro[i].numero;
 			cout<<endl;
 			cout<<"-----------Dato actualizado------------"<<endl<<endl;
 			
@@ -178,14 +178,12 @@ void Actualizar_Paciente(Paciente Registro[], int &cont){
 		cout<<endl;	
 		cout<<"------------DATOS A ACTUALIZAR----------"<<endl<<endl;
 		cout << "a)Nombre" << endl;
-		cout << "b)DNI" <<endl;
-        cout << "c)Edad" <<endl;
-        cout << "d)Sexo" <<endl;
-        cout << "e)Tipo de sangre" <<endl; 
-        cout << "f)Número de celular" <<endl;
-        cout << "g)Dirección"<<endl<<endl;
+		cout << "b)Edad" <<endl;
+        cout << "c)Número de celular" <<endl;
+        cout << "d)Dirección"<<endl<<endl;
         cout <<"Alternativa: ";
         cin >> dato;
+        cout <<endl;
 						
 		switch (dato) {
 			case 'a':{
@@ -194,32 +192,17 @@ void Actualizar_Paciente(Paciente Registro[], int &cont){
 			}
 				
 			case 'b':{
-				
+				Actualizar_Edad(Registro, cont);
 				break;
 			}
 			
 			case 'c':{
-				Actualizar_Edad(Registro, cont);
+				Actualizar_Numero(Registro, cont);
 				break;
 			}
 				
 			case 'd':{
 				
-				break;
-			}
-			
-			case 'e':{
-				Actualizar_TSangre(Registro, cont);
-				break;
-			}
-			
-			case 'f':{
-				
-				break;
-			}
-				
-			case 'g':{
-			
 				break;
 			}
 				
@@ -234,7 +217,7 @@ void Actualizar_Paciente(Paciente Registro[], int &cont){
 	cin>>RPTA;
 	RPTA=toupper(RPTA);	
 	}while(RPTA== 'S');
-}while(dato != 'g');
+}while(dato != 'd');
 }else{
 	cout<<"No hay registro de pacientes"<<endl;
 	cout<<endl;
