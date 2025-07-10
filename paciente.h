@@ -17,6 +17,8 @@ struct Paciente{
 	string direccion;
 };
 
+Paciente Registro[Cant];
+
 void Agregar_Paciente(Registro[], int cont);
 void Eliminar_Paciente(Registro[], int cont);
 void Actualizar_Paciente(Registro[], int cont);
