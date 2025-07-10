@@ -2,10 +2,15 @@
 #define MENUS_GUI
 #include <iostream>
 #include <windows.h>
+#include "paciente.h"
 using namespace std;
 
+extern Paciente Registro[];
+extern int cont;
+
 void menuPrincipal();
-void menuPacientes();
+void menuR_Pacientes();
 void menuHistorial();
+void menuDatos();
 
 #endif 
