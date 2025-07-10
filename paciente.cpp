@@ -164,6 +164,31 @@ void Actualizar_Numero(Paciente Registro[], int &cont){
 	    }
 }
 
+void Actualizar_Direccion(Paciente Registro[], int &cont){  
+	string Nnombre;
+	cout<<"Ingrese el nombre : ";
+	cin.ignore();
+    getline(cin,Nnombre);
+    cout<<endl;
+    bool act =false;
+    for(int i=0;i<cont;i++){
+		if(Registro[i].nombre == Nnombre){
+			cout<<"Actualizar dirección: ";
+			getline(cin, Registro[i].direccion);
+			cout<<endl;
+			cout<<"-----------Dato actualizado------------"<<endl<<endl;
+			
+			act = true;
+			break;
+			}
+		}		
+	if(!act){
+		cout<<endl;
+		cout<<"-------------------Paciente no encontrado---------------------"<<endl;
+		cout<<endl;
+	    }
+}
+
 void Actualizar_Paciente(Paciente Registro[], int &cont){
 	char RPTA;
 	if(cont!=0){
@@ -202,7 +227,7 @@ void Actualizar_Paciente(Paciente Registro[], int &cont){
 			}
 				
 			case 'd':{
-				
+				Actualizar_Direccion(Registro, cont);
 				break;
 			}
 				
