@@ -9,11 +9,11 @@ const int Cant=100;
 		
 struct Paciente{
 	string nombre;
-	int DNI;
-	int edad;
-	int sexo;
+	string DNI;
+	string edad;
+	string sexo;
 	string T_sangre;
-	int numero;
+	string numero;
 	string direccion;
 };
 
