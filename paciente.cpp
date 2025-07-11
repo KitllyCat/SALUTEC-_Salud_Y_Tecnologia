@@ -49,9 +49,25 @@ R_Paciente[9]={
         }
     } while (!valido); 
     cout<<endl;
-    cout<<"Edad: ";
-    cin.ignore();
-    getline(cin, Registro[cont].edad);
+    bool Evalido;
+    do {
+        cout << "Edad: ";
+        getline(cin, Registro[cont].edad);
+        string Ed = Registro[cont].edad;
+        Evalido = (Ed.size() == 3 || Ed.size() ==2 || Ed.size() ==1);
+        if (Evalido) {
+            for (char c : Ed) {
+                if (c < '0' || c > '9') {
+                    Evalido = false;
+                    break;
+                }
+            }
+        }
+        if (!Evalido) {
+        	cout<<endl;
+            cout << "Edad invalida"<<endl<<endl;
+        }
+    } while (!Evalido); 
     cout<<endl;    	
     cout<<"Sexo: ";
     cin.ignore();
