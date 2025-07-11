@@ -6,13 +6,13 @@ using namespace std;
 void showPatient(Paciente pacient[], int count){
     for (int i = 0; i < count ; i++){
         cout << "Paciente N°" << i + 1;
-        cout << "Nombre: " << pacient->nombre;
-        cout << "DNI: " << pacient->DNI;
-        cout << "Edad: " << pacient->edad;
-        cout << "Sexo: " << pacient->sexo;
-        cout << "Tipo de sangre: " << pacient->T_sangre;
-        cout << "Número celular: " << pacient->numero;
-        cout << "Dirección" << pacient->direccion;
+        cout << "Nombre: " << pacient[i].nombre;
+        cout << "DNI: " << pacient[i].DNI;
+        cout << "Edad: " << pacient[i].edad;
+        cout << "Sexo: " << pacient[i].sexo;
+        cout << "Tipo de sangre: " << pacient[i].T_sangre;
+        cout << "Número celular: " << pacient[i].numero;
+        cout << "Dirección" << pacient[i].direccion;
     }
 }
 
