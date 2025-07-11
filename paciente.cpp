@@ -174,8 +174,24 @@ void Actualizar_Edad(Paciente Registro[], int &cont){
     bool act =false;
     for(int i=0;i<cont;i++){
 		if(Registro[i].nombre == Nnombre){
-			cout<<"Actualizar edad: ";
-			cin>> Registro[i].edad;
+			bool Evalido;
+			do{cout<<"Actualizar edad: ";
+			getline(cin, Registro[i].edad);
+			string Ed = Registro[i].edad;
+			Evalido = (Ed.size() == 3 || Ed.size() ==2 || Ed.size() ==1);
+			if (Evalido) {
+            for (char c : Ed) {
+            	if (c < '0' || c > '9') {
+                    Evalido = false;
+                    break;
+                }
+            }
+        }
+        if (!Evalido) {
+        	cout<<endl;
+            cout << "Edad invalida"<<endl<<endl;
+        }
+    } while (!Evalido); 
 			cout<<endl;
 			cout<<"-----------Dato actualizado------------"<<endl<<endl;
 			
