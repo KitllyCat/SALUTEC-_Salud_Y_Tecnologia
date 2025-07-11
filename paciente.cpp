@@ -3,11 +3,11 @@
 using namespace std;
 
 R_Paciente[9]={
-	{"Ureliano Fernandez", "60449025", "18", "M", "O+", "923094702", "Miraflores - Av. Torres"},
-	{"Olaf Mendoza", "33096724", "20", "M", "O-", "907539421", "Barranco Calle - Pardos"},
+	{"Ureliano Buendia", "60449025", "18", "M", "O+", "923094702", "Miraflores - Av. Torres"},
+	{"Olaf Linares", "33096724", "20", "M", "O-", "907539421", "Barranco Calle - Pardos"},
 	{"Maricielo Tapia", "90337611","22", "F", "O+", "926983513", "Madgalena - Av. Alamos"},
 	{"Jimmy Chambe", "20658732","30", "M", "B+", "904533861", "Santa Elena - Av. "},
-	{"Yadira Arias", "60573822","19", "F", "O+", "929473911", "Alameda Asoc.Las Perlas"},
+	{"Yadira Flores", "60573822","19", "F", "O+", "929473911", "Alameda Asoc.Las Perlas"},
 	{"Gabriel Peñaloza", "75236112","25", "M", "B-", "938491036", "Los Perales Calle"},
 	{"Zhamyra Ramos", "91885473","40", "F", "O-", "900372954", "Miraflores Av. Torres"},
 	{"Ignacia Hernandez", "33762819","57", "F", "B+", "925095173", "Miraflores Av. Torres"},
@@ -29,12 +29,31 @@ R_Paciente[9]={
     cin.ignore();
     getline(cin, Registro[cont].nombre);
     cout<<endl;
-    cout<<"DNI: ";
-    cin>>Registro[cont].DNI;
+    string dni;
+    bool valido;
+    do {
+        cout << "DNI: ";
+        getline(cin, Registro[cont].DNI);
+        string dni = Registro[cont].DNI;
+        valido = (dni.size() == 8);
+        if (valido) {
+            for (char c : dni) {
+                if (c < '0' || c > '9') {
+                    valido = false;
+                    break;
+                }
+            }
+        }
+        if (!valido) {
+        	cout<<endl;
+            cout << "DNI inválido, debe contener 8 dígitos"<<endl<<endl;
+        }
+    } while (!valido); 
     cout<<endl;
     cout<<"Edad: ";
-    cin>>Registro[cont].edad;
-    cout<<endl;
+    cin.ignore();
+    getline(cin, Registro[cont].edad);
+    cout<<endl;    	
     cout<<"Sexo: ";
     cin.ignore();
     getline(cin, Registro[cont].sexo);
@@ -44,7 +63,8 @@ R_Paciente[9]={
     getline(cin, Registro[cont].T_sangre);
     cout<<endl;
     cout<<"Número: ";
-    cin>>Registro[cont].numero;
+    cin.ignore();
+    getline(cin, Registro[cont].numero);
     cout<<endl;
     cout<<"Dirección: ";
     cin.ignore();
