@@ -29,7 +29,6 @@ R_Paciente[9]={
     cin.ignore();
     getline(cin, Registro[cont].nombre);
     cout<<endl;
-    string dni;
     bool valido;
     do {
         cout << "DNI: ";
@@ -62,9 +61,25 @@ R_Paciente[9]={
     cin.ignore();
     getline(cin, Registro[cont].T_sangre);
     cout<<endl;
-    cout<<"Número: ";
-    cin.ignore();
-    getline(cin, Registro[cont].numero);
+    bool Nvalido;
+    do {
+        cout<<"Número: ";
+        getline(cin, Registro[cont].numero);
+        string N = Registro[cont].numero;
+        Nvalido = (N.size() == 9);
+        if (Nvalido) {
+            for (char c : N) {
+                if (c < '0' || c > '9') {
+                    Nvalido = false;
+                    break;
+                }
+            }
+        }
+        if (!Nvalido) {
+        	cout<<endl;
+            cout << "Número inválido, debe contener 9 dígitos"<<endl<<endl;
+        }
+    } while (!Nvalido); 
     cout<<endl;
     cout<<"Dirección: ";
     cin.ignore();
