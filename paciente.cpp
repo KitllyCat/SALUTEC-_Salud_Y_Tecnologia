@@ -257,6 +257,7 @@ void Actualizar_Direccion(Paciente Registro[], int &cont){
 }
 
 void Actualizar_Paciente(Paciente Registro[], int &cont){
+	void menuR_Pacientes();
 	char RPTA;
 	if(cont!=0){
 	
@@ -267,16 +268,16 @@ void Actualizar_Paciente(Paciente Registro[], int &cont){
 		char dato;
 		do{
 			do{
-		cout<<endl;	
-		cout<<"------------DATOS A ACTUALIZAR----------"<<endl<<endl;
-		cout << "a)Nombre" << endl;
-		cout << "b)Edad" <<endl;
-        cout << "c)Número de celular" <<endl;
-        cout << "d)Dirección"<<endl<<endl;
-        cout <<"Alternativa: ";
-        cin >> dato;
-        cout <<endl;
-						
+			cout<<endl;	
+			cout<<"------------DATOS A ACTUALIZAR----------"<<endl<<endl;
+			cout << "a)Nombre" << endl;
+			cout << "b)Edad" <<endl;
+            cout << "c)Número de celular" <<endl;
+            cout << "d)Dirección"<<endl<<endl;
+            cout <<"Alternativa: ";
+            cin >> dato;
+            cout <<endl;
+		
 		switch (dato) {
 			case 'a':{
 				Actualizar_Nombre(Registro, cont);
@@ -297,10 +298,10 @@ void Actualizar_Paciente(Paciente Registro[], int &cont){
 				Actualizar_Direccion(Registro, cont);
 				break;
 			}
-				
+			
 			default:{
 				cout<<endl;
-				cout<<"-------Alternativa invalida--------"<<endl;
+				cout<<"-------Alternativa invalida--------";
 				cout<<endl;
 				break;
 			}
@@ -309,9 +310,11 @@ void Actualizar_Paciente(Paciente Registro[], int &cont){
 	cin>>RPTA;
 	RPTA=toupper(RPTA);	
 	}while(RPTA== 'S');
-}while(dato != 'd');
-}else{
-	cout<<"No hay registro de pacientes"<<endl;
-	cout<<endl;
+	cout<<"Regresando al menu principal..."<<endl<<endl;
+	menuR_Pacientes();	
+	}while(dato != 'd');
+	}else{
+		cout<<"No hay registro de pacientes"<<endl;
+		cout<<endl;
 	}
 }
