@@ -4,15 +4,15 @@ using namespace std;
 
 R_Paciente[9]={
 	{"Ureliano Buendia", "60449025", "18", "M", "O+", "923094702", "Miraflores - Av. Torres"},
-	{"Olaf Linares", "33096724", "20", "M", "O-", "907539421", "Barranco Calle - Pardos"},
-	{"Maricielo Tapia", "90337611","22", "F", "O+", "926983513", "Madgalena - Av. Alamos"},
-	{"Jimmy Chambe", "20658732","30", "M", "B+", "904533861", "Santa Elena - Av. "},
-	{"Yadira Flores", "60573822","19", "F", "O+", "929473911", "Alameda Asoc.Las Perlas"},
-	{"Gabriel Peñaloza", "75236112","25", "M", "B-", "938491036", "Los Perales Calle"},
-	{"Zhamyra Ramos", "91885473","40", "F", "O-", "900372954", "Miraflores Av. Torres"},
-	{"Ignacia Hernandez", "33762819","57", "F", "B+", "925095173", "Miraflores Av. Torres"},
-	{"Mauricio Gutierrez", "54073862","17", "M", "O+", "937520947", "Miraflores Av. Torres"},
-	{"Diego Jaramillo", "60456915","33", "M", "O-", "921957740", "Miraflores Av. Torres"},
+	{"Olaf Linares", "33096724", "20", "M", "O-", "907539421", "Barranco - Calle Los Pardos"},
+	{"Maricielo Tapia", "90337611","22", "F", "O+", "926983513", "Madgalena - Av. Los Alamos"},
+	{"Jimmy Chambe", "20658732","61", "M", "B+", "904533861", "Santa Elena - Asoc. Punta Hermosa"},
+	{"Yadira Flores", "60573822","19", "F", "O+", "929473911", "Alameda - Av.Las Perlas"},
+	{"Gabriel Peñaloza", "75236112","39", "M", "B-", "938491036", "Los Perales - Calle Almonte"},
+	{"Zhamyra Ramos", "91885473","40", "F", "O-", "900372954", "Ciudad Perdida - Av. Lima"},
+	{"Ignacia Hernandez", "33762819","57", "F", "B+", "925095173", "Calana - Calle Cuzco"},
+	{"Mauricio Gutierrez", "54073862","17", "M", "O+", "937520947", "Puente Piedra - Asoc. La Paz"},
+	{"Diego Jaramillo", "60456915","33", "M", "O-", "921957740", "Metropolitano - Av. Tacna"},
 
 };
     Paciente Registro[Cant];
@@ -215,13 +215,30 @@ void Actualizar_Numero(Paciente Registro[], int &cont){
     bool act =false;
     for(int i=0;i<cont;i++){
 		if(Registro[i].nombre == Nnombre){
-			cout<<"Actualizar número: ";
-			cin>> Registro[i].numero;
-			cout<<endl;
-			cout<<"-----------Dato actualizado------------"<<endl<<endl;
+			bool Nvalido;
+			do {
+				cout<<"Actualizar número: ";
+				getline(cin, Registro[i].numero);
+				string N = Registro[i].numero;
+				Nvalido = (N.size() == 9);
+				if (Nvalido) {
+					for (char c : N) {	
+					if (c < '0' || c > '9') {
+                    Nvalido = false;
+                    break;
+                }
+            }
+        }
+        if (!Nvalido) {
+        	cout<<endl;
+            cout << "Número inválido, debe contener 9 dígitos"<<endl<<endl;
+        }
+    } while (!Nvalido); 
+		cout<<endl;
+		cout<<"-----------Dato actualizado------------"<<endl<<endl;
 			
-			act = true;
-			break;
+		act = true;
+		break;
 			}
 		}		
 	if(!act){
