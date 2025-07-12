@@ -28,6 +28,12 @@ R_Paciente[9]={
     cout<<"Nombre: ";
     cin.ignore();
     getline(cin, Registro[cont].nombre);
+    for (size_t i = 0; i < Registro[cont].nombre.size(); ++i) {
+        char c = Registro[cont].nombre[i];
+        if (c >= 'a' && c <= 'z') {
+            Registro[cont].nombre[i] = c - ('a' - 'A');
+        }
+    }
     cout<<endl;
     bool valido;
     do {
@@ -105,6 +111,12 @@ R_Paciente[9]={
     cout<<"Dirección: ";
     cin.ignore();
     getline(cin, Registro[cont].direccion);
+    for (size_t i = 0; i < Registro[cont].direccion.size(); ++i) {
+        char c = Registro[cont].direccion[i];
+        if (c >= 'a' && c <= 'z') {
+            Registro[cont].direccion[i] = c - ('a' - 'A');
+        }
+    }
 	cout<<endl;
 	
 	cont++;
