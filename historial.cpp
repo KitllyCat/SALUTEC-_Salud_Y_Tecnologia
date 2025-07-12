@@ -56,3 +56,84 @@ void mostrarHistorial(Diagnostico historial[], int &total){
         cout << "\nNo se encontraron diagnosticos para este paciente" << endl;
     }
 }
+
+void modificarDiagnostico(Diagnostico historial[], int total) {
+    string nombre;
+    cout << "Ingrese el nombre del paciente cuyo diagnóstico desea modificar: ";
+    cin.ignore();
+    getline(cin, nombre);
+
+    bool encontrado = false;
+
+    for (int i = 0; i < total; i++){
+        if (historial[i].nombrePaciente == nombre){
+            cout << "\n--- Diagnóstico encontrado ---\n";
+            cout << "Fecha: " << historial[i].fecha << endl;
+            cout << "Descripción: " << historial[i].descripcion << endl;
+
+            cout << "\nQue desea modificar?\n";
+            cout << "a. Solo la fecha\n";
+            cout << "b. Solo la descripción\n";
+            cout << "c. Ambas\n";
+            cout << "Elija una opcion: ";
+            char opcion;
+            cin >> opcion;
+            cin.ignore();
+
+            if (opcion == 'a' || opcion == 'c'){
+                string nuevaFecha;
+                bool valido = false;
+                do{
+                    cout << "Ingrese la nueva fecha: ";
+                    getline(cin, nuevaFecha);
+        
+                    for (int j = 0; nuevaFecha[j] != '\0'; j++){
+                        if (nuevaFecha[j] != ' '){
+                            valido = true;
+                            break;
+                        }
+                    }
+                    if (!valido){
+                        cout << "La fecha no puede estar vacia\n";
+                    }
+                    
+                } while (!valido);
+
+                historial[i].fecha = nuevaFecha;
+                if (opcion == 'a'){
+                    cout << "Fecha actualizada correctamente\n";
+                }
+            }
+
+            if (opcion == 'b' || opcion == 'c'){
+                string nuevaDescripcion;
+                bool valido = false;
+                do {
+                    cout << "Ingrese la nueva descripcion: ";
+                    getline(cin, nuevaDescripcion);
+                   
+                    for (int j = 0; nuevaDescripcion[j] != '\0'; j++) {
+                        if (nuevaDescripcion[j] != ' '){
+			
+                            valido = true;
+                            break;
+                        }
+                    }
+                    if (!valido){
+                        cout << "La descripcion no puede estar vacia\n";
+                    }
+                } while (!valido);
+
+                historial[i].descripcion = nuevaDescripcion;
+                cout << "Descripcion actualizada correctamente\n";
+            }
+
+            encontrado = true;
+            break;
+        }
+    }
+
+    if (!encontrado) {
+        cout << "\nNo se encontro ningun diagnostico para el paciente ingresado\n";
+    }
+}
