@@ -20,18 +20,40 @@ int totalDiagnosticos = 10;
 
 void registrarDiagnostico(Diagnostico historial[], int &total){
 	
-	cout << "Ingrese el nombre del paciente: ";
-    cin.ignore();
-    getline(cin, historial[total].nombrePaciente);
+	string nombre;
+    bool nombreValido = false;
+    
+    do{
+		cout << "Ingrese el nombre del paciente: ";
+	    getline(cin, nombre);
+	    
+	    for (int i = 0; nombre[i] != '\0'; i++){
+            if (nombre[i] !=' '){
+                nombreValido = true;
+                break;
+            }
+        }
+        
+        if (!nombreValido){
+            cout << "El nombre no puede estar vacio, intentelo de nuevo\n";
+        }
+        
+	}while(!nombreValido);
+	
+	historial[total].nombrePaciente = nombre;
 
+	
     cout << "Fecha del diagnostico: ";
     getline(cin, historial[total].fecha);
-
+    //validacion para fecha
+	
     cout << "Descripcion del diagnostico: ";
     getline(cin, historial[total].descripcion);
+    //validacion para diagnostico
 
     total++;
     cout << "Diagnostico registrado\n";
+	
 }
 
 void mostrarHistorial(Diagnostico historial[], int &total){
@@ -72,8 +94,8 @@ void modificarDiagnostico(Diagnostico historial[], int total) {
             cout << "Descripción: " << historial[i].descripcion << endl;
 
             cout << "\nQue desea modificar?\n";
-            cout << "a. Solo la fecha\n";
-            cout << "b. Solo la descripción\n";
+            cout << "a. Solo la fecha";
+            cout << "b. Solo la descripcion";
             cout << "c. Ambas\n";
             cout << "Elija una opcion: ";
             char opcion;
