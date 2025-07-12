@@ -42,7 +42,6 @@ R_Paciente[9]={
             }
         }
         if (!NOvalido) {
-        	cout<<endl;
             cout << "Ingrese un nombre"<<endl<<endl;
         }
     } while (!NOvalido); 
@@ -69,7 +68,6 @@ R_Paciente[9]={
             }
         }
         if (!valido) {
-        	cout<<endl;
             cout << "DNI inválido, debe contener 8 dígitos"<<endl<<endl;
         }
     } while (!valido); 
@@ -89,7 +87,6 @@ R_Paciente[9]={
             }
         }
         if (!Evalido) {
-        	cout<<endl;
             cout << "Edad invalida"<<endl<<endl;
         }
     } while (!Evalido); 
@@ -102,25 +99,30 @@ R_Paciente[9]={
     	}
 	}while(Registro[cont].sexo!="M" && Registro[cont].sexo!="F" && Registro[cont].sexo!="m" && Registro[cont].sexo!="f");
     cout<<endl;
-    bool TSvalido;
-    do {
-    cout<<"Tipo de sangre: ";
+    bool TS;
+	do{
+    cout << "Tipo de sangre: ";
     getline(cin, Registro[cont].T_sangre);
-        string S = Registro[cont].T_sangre;
-        TSvalido = (S.size() > 0);
-        if (TSvalido) {
-            for (char c : S) {
-                if (c <= 'a' && c >= 'z') {
-                    TSvalido = false;
-                    break;
-                }
-            }
+    for (size_t i = 0; i < Registro[cont].T_sangre.size(); ++i) {
+        char c = Registro[cont].T_sangre[i];
+        if (c >= 'a' && c <= 'z') {
+            Registro[cont].T_sangre[i] = c - ('a' - 'A');
         }
-        if (!TSvalido) {
-        	cout<<endl;
-            cout << "Ingrese el tipo de sangre"<<endl<<endl;
+    }
+    
+    string entrada = Registro[cont].T_sangre;
+
+    if (entrada == "A+" || entrada == "A-" ||
+        entrada == "B+" || entrada == "B-" ||
+        entrada == "AB+"|| entrada == "AB-"||
+        entrada == "O+" || entrada == "O-") {
+        	TS=true;
+        	break;
         }
-    } while (!TSvalido); 
+        if (TS!=true){
+            cout << "Tipo de sangre invalido"<<endl<<endl;
+		}
+    }while(TS!=true);
     cout<<endl;
     bool Nvalido;
     do {
@@ -137,7 +139,6 @@ R_Paciente[9]={
             }
         }
         if (!Nvalido) {
-        	cout<<endl;
             cout << "Número inválido, debe contener 9 dígitos"<<endl<<endl;
         }
     } while (!Nvalido); 
@@ -157,7 +158,6 @@ R_Paciente[9]={
             }
         }
         if (!DIvalido) {
-        	cout<<endl;
             cout << "Ingrese una dirección"<<endl<<endl;
         }
     } while (!DIvalido); 
@@ -227,7 +227,9 @@ void Actualizar_Nombre(Paciente Registro[], int &cont){
 		if(Registro[i].nombre == Nnombre){
 			cout<<"Actualizar nombre: ";
 			getline(cin, Registro[i].nombre);
+			
 			cout<<endl;
+			
 			cout<<"-----------Dato actualizado------------"<<endl<<endl;
 			
 			act = true;
@@ -378,7 +380,8 @@ void Actualizar_Paciente(Paciente Registro[], int &cont){
 			cout << "a)Nombre" << endl;
 			cout << "b)Edad" <<endl;
             cout << "c)Número de celular" <<endl;
-            cout << "d)Dirección"<<endl<<endl;
+            cout << "d)Dirección"<<endl;
+            cout << "s)Salir"<<endl;
             cout <<"Alternativa: ";
             cin >> dato;
             cout <<endl;
