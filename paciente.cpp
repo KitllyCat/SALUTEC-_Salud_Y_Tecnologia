@@ -68,10 +68,15 @@ R_Paciente[9]={
             cout << "Edad invalida"<<endl<<endl;
         }
     } while (!Evalido); 
-    cout<<endl;    	
-    cout<<"Sexo: ";
-    cin.ignore();
-    getline(cin, Registro[cont].sexo);
+    cout<<endl;
+    do{
+    	cout<<"Sexo (M/F): ";
+		getline(cin, Registro[cont].sexo);
+    	if(Registro[cont].sexo!="M" && Registro[cont].sexo!="F" && Registro[cont].sexo!="m" && Registro[cont].sexo!="f"){
+    	    cout<<endl;
+			cout<<"Error solo ingrese 'M' o 'F' "<<endl<<endl;
+    	}
+	}while(Registro[cont].sexo!="M" && Registro[cont].sexo!="F" && Registro[cont].sexo!="m" && Registro[cont].sexo!="f");
     cout<<endl;
     cout<<"Tipo de sangre: ";
     cin.ignore();
