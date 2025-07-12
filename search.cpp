@@ -26,10 +26,30 @@ void listPatients(Paciente pacient[], int count){
     cout << endl;
 }
 
-void searchPatientByName(){
-
+void searchPatientByName(Paciente pacient[], int count){
+    string nombre;
+    cout << "Ingrese el nombre que desea buscar:" << endl;
+    getline(cin, nombre);
+    bool encontrado = false;
+    for (int i = 0; i < count; i++) {
+        if (pacient[i].nombre == nombre) {
+            cout << "Paciente encontrado:" << endl;
+            cout << "Nombre: " << pacient[i].nombre << endl;
+            cout << "DNI: " << pacient[i].DNI << endl;
+            cout << "Edad: " << pacient[i].edad << endl;
+            cout << "Sexo: " << pacient[i].sexo << endl;
+            cout << "Tipo de sangre: " << pacient[i].T_sangre << endl;
+            cout << "Número celular: " << pacient[i].numero << endl;
+            cout << "Dirección: " << pacient[i].direccion << endl;
+            encontrado = true;
+            break;
+        }
+    }
+    if (!encontrado) {
+        cout << "Paciente no encontrado." << endl;
+    }
 }
 
 void searchPatientByDNI(){
-
+    
 }
