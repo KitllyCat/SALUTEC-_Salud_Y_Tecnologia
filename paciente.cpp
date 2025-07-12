@@ -23,12 +23,30 @@ R_Paciente[9]={
     cout << "                REGISTRO DE PACIENTE" << endl;
     cout << "==========================================================" << endl;
     cout<<endl;
-
+    
     cin.ignore();
     
     cout<<cont+1<<".- ";
+    bool NOvalido;
+    do {
     cout<<"Nombre: ";
     getline(cin, Registro[cont].nombre);
+        string NO = Registro[cont].nombre;
+        NOvalido = (NO.size() > 0);
+        if (NOvalido) {
+            for (char c : NO) {
+                if (c <= 'a' && c >= 'z') {
+                    NOvalido = false;
+                    break;
+                }
+            }
+        }
+        if (!NOvalido) {
+        	cout<<endl;
+            cout << "Ingrese un nombre"<<endl<<endl;
+        }
+    } while (!NOvalido); 
+    
     for (size_t i = 0; i < Registro[cont].nombre.size(); ++i) {
         char c = Registro[cont].nombre[i];
         if (c >= 'a' && c <= 'z') {
@@ -84,8 +102,25 @@ R_Paciente[9]={
     	}
 	}while(Registro[cont].sexo!="M" && Registro[cont].sexo!="F" && Registro[cont].sexo!="m" && Registro[cont].sexo!="f");
     cout<<endl;
+    bool TSvalido;
+    do {
     cout<<"Tipo de sangre: ";
-	getline(cin, Registro[cont].T_sangre);
+    getline(cin, Registro[cont].T_sangre);
+        string S = Registro[cont].T_sangre;
+        TSvalido = (S.size() > 0);
+        if (TSvalido) {
+            for (char c : S) {
+                if (c <= 'a' && c >= 'z') {
+                    TSvalido = false;
+                    break;
+                }
+            }
+        }
+        if (!TSvalido) {
+        	cout<<endl;
+            cout << "Ingrese el tipo de sangre"<<endl<<endl;
+        }
+    } while (!TSvalido); 
     cout<<endl;
     bool Nvalido;
     do {
@@ -107,8 +142,26 @@ R_Paciente[9]={
         }
     } while (!Nvalido); 
     cout<<endl;
-    cout<<"Dirección: ";
-    getline(cin, Registro[cont].direccion);
+    bool DIvalido;
+    do {
+    	cout<<"Dirección: ";
+    	getline(cin, Registro[cont].direccion);
+        string D = Registro[cont].direccion;
+        DIvalido = (D.size() > 0);
+        if (DIvalido) {
+            for (char c : D) {
+                if (c <= 'a' && c >= 'z') {
+                    DIvalido = false;
+                    break;
+                }
+            }
+        }
+        if (!DIvalido) {
+        	cout<<endl;
+            cout << "Ingrese una dirección"<<endl<<endl;
+        }
+    } while (!DIvalido); 
+    
     for (size_t i = 0; i < Registro[cont].direccion.size(); ++i) {
         char c = Registro[cont].direccion[i];
         if (c >= 'a' && c <= 'z') {
@@ -120,6 +173,7 @@ R_Paciente[9]={
 	cont++;
 	cout<<"-------------------Paciente registrado--------------------"<<endl;
 	cout<<endl;
+	
 }
 
 void Eliminar_Paciente(Paciente Registro[], int &cont){
@@ -309,8 +363,8 @@ void Actualizar_Direccion(Paciente Registro[], int &cont){
 }
 
 void Actualizar_Paciente(Paciente Registro[], int &cont){
+	
 	void menuR_Pacientes();
-	char RPTA;
 	if(cont!=0){
 	
 	cout<<"==========================================================" << endl;
@@ -318,7 +372,6 @@ void Actualizar_Paciente(Paciente Registro[], int &cont){
     cout<<"==========================================================" << endl;	
     
 		char dato;
-		do{
 			do{
 			cout<<endl;	
 			cout<<"------------DATOS A ACTUALIZAR----------"<<endl<<endl;
@@ -351,6 +404,12 @@ void Actualizar_Paciente(Paciente Registro[], int &cont){
 				break;
 			}
 			
+			case 's': {
+				cout<<"Regresando al menu principal..."<<endl<<endl;
+				menuR_Pacientes();	
+				break;
+			}
+			
 			default:{
 				cout<<endl;
 				cout<<"-------Alternativa invalida--------";
@@ -358,13 +417,7 @@ void Actualizar_Paciente(Paciente Registro[], int &cont){
 				break;
 			}
 		}
-	cout<<"Desea actualizar otro dato? (S/N): ";
-	cin>>RPTA;
-	RPTA=toupper(RPTA);	
-	}while(RPTA== 'S');
-	cout<<"Regresando al menu principal..."<<endl<<endl;
-	menuR_Pacientes();	
-	}while(dato != 'd');
+	}while(dato != 's');
 	}else{
 		cout<<"No hay registro de pacientes"<<endl;
 		cout<<endl;
