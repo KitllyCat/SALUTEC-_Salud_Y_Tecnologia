@@ -44,6 +44,21 @@ void searchPatientByName(Paciente pacient[], int count){
     }
 }
 
-void searchPatientByDNI(){
-    
+void searchPatientByDNI(Paciente pacient[], int count){
+    int dni;
+    cout << "Ingrese el DNI que desea buscar:" << endl;
+    cin >> dni;
+    cin.ignore();
+    bool encontrado = false;
+    for (int i = 0; i < count; i++) {
+        if (pacient[i].DNI == dni) {
+            cout << "Paciente encontrado:" << endl;
+            showPatient(pacient[i]);
+            encontrado = true;
+            break;
+        }
+    }
+    if (!encontrado) {
+        cout << "Paciente no encontrado." << endl;
+    }
 }
