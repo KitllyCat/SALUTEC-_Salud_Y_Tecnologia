@@ -4,16 +4,16 @@
 using namespace std;
 
 Diagnostico historial[100] = {
-    {"Ureliano Buendia", "2024-01-10", "Gripe comun, descanso y paracetamol"},
-    {"Olaf Linares", "2024-02-15", "Dolor lumbar, se indica fisioterapia"},
-    {"Maricielo Tapia", "2024-03-01", "Alergia estacional, se receta loratadina"},
-    {"Jimmy Chambe", "2024-03-20", "Presion arterial alta, iniciar tratamiento"},
-    {"Yadira Flores", "2024-04-08", "Dolor de garganta, infeccion leve"},
-    {"Gabriel Peñaloza", "2024-05-04", "Lesion leve en pierna, se recomienda reposo"},
-    {"Zhamyra Ramos", "2024-05-28", "Chequeo general, todo en orden"},
-    {"Ignacia Hernandez", "2024-06-10", "Diabetes tipo II, control mensual"},
-    {"Mauricio Gutierrez", "2024-06-20", "Dolor de estomago, dieta blanda"},
-    {"Diego Jaramillo", "2024-07-01", "Infeccion respiratoria leve"}
+    {"Ureliano Buendia", "60449025", "2024-01-10", "Gripe comun, descanso y paracetamol"},
+    {"Olaf Linares", "33096724", "2024-02-15", "Dolor lumbar, se indica fisioterapia"},
+    {"Maricielo Tapia", "90337611", "2024-03-01", "Alergia estacional, se receta loratadina"},
+    {"Jimmy Chambe", "20658732", "2024-03-20", "Presion arterial alta, iniciar tratamiento"},
+    {"Yadira Flores", "60573822", "2024-04-08", "Dolor de garganta, infeccion leve"},
+    {"Gabriel Peñaloza", "75236112", "2024-05-04", "Lesion leve en pierna, se recomienda reposo"},
+    {"Zhamyra Ramos", "91885473", "2024-05-28", "Chequeo general, todo en orden"},
+    {"Ignacia Hernandez", "33762819", "2024-06-10", "Diabetes tipo II, control mensual"},
+    {"Mauricio Gutierrez", "54073862", "2024-06-20", "Dolor de estomago, dieta blanda"},
+    {"Diego Jaramillo", "60456915", "2024-07-01", "Infeccion respiratoria leve"}
 };
 
 int totalDiagnosticos = 10;
@@ -243,5 +243,55 @@ void buscarPorFecha(Diagnostico historial[], int total){
         cout << "[!] No se encontraron diagnosticos para esa fecha\n";
     }
 }
+
+void buscarPorDNI(Diagnostico historial[], int total) {
+    
+    cout << "\n ====================================" << endl;
+    cout << "|    BUSQUEDA POR DNI DE PACIENTE    |" << endl;
+    cout << " ====================================\n";
+
+    string dniBuscar;
+	bool dniValido = false;
+
+	do {
+	    cout << "Ingrese el DNI a buscar (8 digitos): ";
+	    getline(cin, dniBuscar);
+	
+	    int contador = 0;
+	    bool soloDigitos = true;
+	
+	    for (int i = 0; dniBuscar[i] != '\0'; i++) {
+	        if (dniBuscar[i] >= '0' && dniBuscar[i] <= '9') {
+	            contador++;
+	        } else {
+	            soloDigitos = false;
+	            break;
+	        }
+	    }
+	
+	    if (contador == 8 && soloDigitos) {
+	        dniValido = true;
+	    } else {
+	        cout << "[!] DNI invalido, debe contener exactamente 8 digitos numericos\n";
+	    }
+	} while (!dniValido);
+	
+    bool encontrado = false;
+    for (int i = 0; i < total; i++) {
+        if (historial[i].dni == dniBuscar) {
+        	cout << "\n=== Diagnostico del paciente con DNI " << dniBuscar << " ===\n";
+            cout << "\nPaciente: " << historial[i].nombrePaciente << endl;
+            cout << "Fecha: " << historial[i].fecha << endl;
+            cout << "Diagnostico: " << historial[i].descripcion << endl;
+            cout << "--------------------------------------" << endl;
+            encontrado = true;
+        }
+    }
+
+    if (!encontrado) {
+        cout << "\n[!] No se encontraron diagnosticos para ese DNI\n";
+    }
+}
+
 
 
