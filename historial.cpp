@@ -193,10 +193,19 @@ void modificarDiagnostico(Diagnostico historial[], int total) {
             char opcion;
             cin >> opcion;
             
-            while (opcion < 'a' || opcion > 'e'){
-    			cout << "[!] Opcion invalida. Elija entre a, b, c, d o e: ";
-    			cin >> opcion;
-			}
+			do {
+			    cin >> opcion;
+			
+			    if (opcion >= 'A' && opcion <= 'E') {
+			        opcion = opcion + 32;
+			    }
+			
+			    if (opcion < 'a' || opcion > 'e') {
+			        cout << "[!] Opcion invalida, elija entre a, b, c, d o e: ";
+			    }
+			    
+			} while (opcion < 'a' || opcion > 'e');
+
 
             if (opcion == 'a' || opcion == 'c'|| opcion == 'e'){
             	//modificar fecha
@@ -207,7 +216,7 @@ void modificarDiagnostico(Diagnostico historial[], int total) {
 			        getline(cin, nuevaFecha);
 			
 			        int longitud = 0;
-			        for (int j = 0; nuevaFecha[j] != '\0'; j++) {
+			        for (int j = 0; nuevaFecha[j] != '\0'; j++){
 			            longitud++;
 			        }
 			
