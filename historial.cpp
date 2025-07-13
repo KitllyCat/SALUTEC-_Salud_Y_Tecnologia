@@ -6,16 +6,16 @@
 using namespace std;
 
 Diagnostico historial[100] = {
-    {"Ureliano Buendia", "2024-01-10", "Gripe comun, descanso y paracetamol"},
-    {"Olaf Linares", "2024-02-15", "Dolor lumbar, se indica fisioterapia"},
-    {"Maricielo Tapia", "2024-03-01", "Alergia estacional, se receta loratadina"},
-    {"Jimmy Chambe", "2024-03-20", "Presion arterial alta, iniciar tratamiento"},
-    {"Yadira Flores", "2024-04-08", "Dolor de garganta, infeccion leve"},
-    {"Gabriel Peñaloza", "2024-05-04", "Lesion leve en pierna, se recomienda reposo"},
-    {"Zhamyra Ramos", "2024-05-28", "Chequeo general, todo en orden"},
-    {"Ignacia Hernandez", "2024-06-10", "Diabetes tipo II, control mensual"},
-    {"Mauricio Gutierrez", "2024-06-20", "Dolor de estomago, dieta blanda"},
-    {"Diego Jaramillo", "2024-07-01", "Infeccion respiratoria leve"}
+    {"Ureliano Buendia", "60449025", "2024-01-10", "Gripe comun, descanso y paracetamol"},
+    {"Olaf Linares", "33096724", "2024-02-15", "Dolor lumbar, se indica fisioterapia"},
+    {"Maricielo Tapia", "90337611", "2024-03-01", "Alergia estacional, se receta loratadina"},
+    {"Jimmy Chambe", "20658732", "2024-03-20", "Presion arterial alta, iniciar tratamiento"},
+    {"Yadira Flores", "60573822", "2024-04-08", "Dolor de garganta, infeccion leve"},
+    {"Gabriel Peñaloza", "75236112", "2024-05-04", "Lesion leve en pierna, se recomienda reposo"},
+    {"Zhamyra Ramos", "91885473", "2024-05-28", "Chequeo general, todo en orden"},
+    {"Ignacia Hernandez", "33762819", "2024-06-10", "Diabetes tipo II, control mensual"},
+    {"Mauricio Gutierrez", "54073862", "2024-06-20", "Dolor de estomago, dieta blanda"},
+    {"Diego Jaramillo", "60456915", "2024-07-01", "Infeccion respiratoria leve"}
 };
 
 int totalDiagnosticos = 10;
@@ -47,6 +47,36 @@ void registrarDiagnostico(Diagnostico historial[], int &total){
 	}while(!nombreValido);
 	
 	historial[total].nombrePaciente = nombre;
+	
+
+    string dni;
+    bool dniValido = false;
+
+    do {
+        cout << "Ingrese el DNI del paciente (8 digitos): ";
+        getline(cin, dni);
+
+        int contador = 0;
+        bool soloNumeros = true;
+
+        for (int i = 0; dni[i] != '\0'; i++) {
+            contador++;
+            if (dni[i] < '0' || dni[i] > '9') {
+                soloNumeros = false;
+                break;
+            }
+        }
+
+        if (contador == 8 && soloNumeros) {
+            dniValido = true;
+        } else {
+            cout << "[!] El DNI debe contener exactamente 8 digitos numericos\n";
+        }
+
+    } while (!dniValido);
+
+    historial[total].dni = dni;
+
 
 	string fecha;
     bool fechaValida = false;
@@ -123,6 +153,7 @@ void mostrarHistorial(Diagnostico historial[], int &total){
     cout << "\n=== Historial medico de " << nombre << " ===" << endl;
     for (int i = 0; i < total; i++){
         if (historial[i].nombrePaciente == nombre){
+			cout << "DNI: " << historial[i].dni << endl;
             cout << "Fecha: " << historial[i].fecha << endl;
             cout << "Diagnostico: " << historial[i].descripcion << endl;
             cout << "---------------------------------------" << endl;
@@ -150,44 +181,72 @@ void modificarDiagnostico(Diagnostico historial[], int total) {
     for (int i = 0; i < total; i++){
         if (historial[i].nombrePaciente == nombre){
             cout << "\n--- Diagnostico encontrado ---\n";
+            cout << "DNI: " << historial[i].dni << endl;
             cout << "Fecha: " << historial[i].fecha << endl;
             cout << "Descripcion: " << historial[i].descripcion << endl;
-
+			//pequeño menu:
             cout << "\nQue desea modificar?\n";
             cout << "a. Solo la fecha\n";
             cout << "b. Solo la descripcion\n";
-            cout << "c. Ambas\n";
-            cout << "Elija una opcion: ";
+            cout << "c. fecha y descripcion\n";
+            cout << "d. DNI del paciente\n";
+            cout << "e. Todos los campos (fecha, descripcion y DNI)" << endl;
+            cout << "\nElija una opcion: ";
             char opcion;
             cin >> opcion;
-            cin.ignore();
+            
+			do {
+			    cin >> opcion;
+			
+			    if (opcion >= 'A' && opcion <= 'E') {
+			        opcion = opcion + 32;
+			    }
+			
+			    if (opcion < 'a' || opcion > 'e') {
+			        cout << "[!] Opcion invalida, elija entre a, b, c, d o e: ";
+			    }
+			    
+			} while (opcion < 'a' || opcion > 'e');
 
-            if (opcion == 'a' || opcion == 'c'){
+
+            if (opcion == 'a' || opcion == 'c'|| opcion == 'e'){
+            	//modificar fecha
                 string nuevaFecha;
-                bool valido = false;
-                do{
-                    cout << "Ingrese la nueva fecha: ";
-                    getline(cin, nuevaFecha);
-        
-                    for (int j = 0; nuevaFecha[j] != '\0'; j++){
-                        if (nuevaFecha[j] != ' '){
-                            valido = true;
-                            break;
-                        }
-                    }
-                    if (!valido){
-                        cout << "[!] La fecha no puede estar vacia\n";
-                    }
-                    
-                } while (!valido);
+                bool fechaValida = false;
+			    do {
+			        cout << "Ingrese la nueva fecha (formato YYYY-MM-DD): ";
+			        getline(cin, nuevaFecha);
+			
+			        int longitud = 0;
+			        for (int j = 0; nuevaFecha[j] != '\0'; j++){
+			            longitud++;
+			        }
+			
+			        if (longitud == 10 &&
+			            nuevaFecha[4] == '-' && nuevaFecha[7] == '-' &&
+			            nuevaFecha[0] >= '0' && nuevaFecha[0] <= '9' &&
+			            nuevaFecha[1] >= '0' && nuevaFecha[1] <= '9' &&
+			            nuevaFecha[2] >= '0' && nuevaFecha[2] <= '9' &&
+			            nuevaFecha[3] >= '0' && nuevaFecha[3] <= '9' &&
+			            nuevaFecha[5] >= '0' && nuevaFecha[5] <= '9' &&
+			            nuevaFecha[6] >= '0' && nuevaFecha[6] <= '9' &&
+			            nuevaFecha[8] >= '0' && nuevaFecha[8] <= '9' &&
+			            nuevaFecha[9] >= '0' && nuevaFecha[9] <= '9') {
+			            fechaValida = true;
+			        } else {
+			            cout << "[!] Formato de fecha invalido, use el formato: YYYY-MM-DD\n";
+			        }
+    			} while (!fechaValida);
 
                 historial[i].fecha = nuevaFecha;
+                
                 if (opcion == 'a'){
-                    cout << "[+] Fecha actualizada correctamente\n";
+                    cout << "[+] Fecha actualizada correctamente\n" << endl;
                 }
             }
 
-            if (opcion == 'b' || opcion == 'c'){
+            if (opcion == 'b' || opcion == 'c' || opcion == 'e'){
+            	//modificar descripcion
                 string nuevaDescripcion;
                 bool valido = false;
                 do {
@@ -207,7 +266,51 @@ void modificarDiagnostico(Diagnostico historial[], int total) {
                 } while (!valido);
 
                 historial[i].descripcion = nuevaDescripcion;
-                cout << "[+] Descripcion actualizada correctamente\n";
+                
+                if (opcion == 'b'){
+                	cout << "[+] Descripcion actualizada correctamente\n" << endl;
+            	}
+            	
+            	if (opcion == 'c'){
+            		cout << "[+] fecha y descripcion actualizadas correctamente\n" << endl;
+				}
+			}
+            
+            if (opcion == 'd' || opcion == 'e') {
+            	//modificar dni
+                string nuevoDNI;
+                bool dniValido = false;
+
+                do {
+                    cout << "Ingrese el nuevo DNI (8 digitos numericos): ";
+                    getline(cin, nuevoDNI);
+
+                    int contador = 0;
+                    bool soloDigitos = true;
+
+                    for (int j = 0; nuevoDNI[j] != '\0'; j++) {
+                        contador++;
+                        if (nuevoDNI[j] < '0' || nuevoDNI[j] > '9') {
+                            soloDigitos = false;
+                            break;
+                        }
+                    }
+
+                    if (contador == 8 && soloDigitos) {
+                        dniValido = true;
+                    } else {
+                        cout << "[!] DNI invalido, debe contener exactamente 8 digitos numericos\n";
+                    }
+
+                } while (!dniValido);
+
+                historial[i].dni = nuevoDNI;
+                if (opcion == 'd'){
+                	cout << "[+] DNI actualizado correctamente\n";
+            	}
+            	if (opcion == 'e'){
+            		cout << "[+] fecha, descripcion y DNI actualizados correctamente\n" << endl;
+				}
             }
 
             encontrado = true;
@@ -227,15 +330,42 @@ void buscarPorFecha(Diagnostico historial[], int total){
 	cout << "|   BUSQUEDA DE DIAGNOSTICOS POR FECHA   |" << endl;
 	cout << " ========================================\n";
 
-    cout << "\nIngrese la fecha a buscar (formato YYYY-MM-DD): ";
-    getline(cin, fechaBuscar);
+    bool fechaValida = false;
+
+    do {
+        cout << "\nIngrese la fecha a buscar (formato YYYY-MM-DD): ";
+        getline(cin, fechaBuscar);
+
+        int longitud = 0;
+        for (int i = 0; fechaBuscar[i] != '\0'; i++) {
+            longitud++;
+        }
+
+        if (longitud == 10 &&
+            fechaBuscar[4] == '-' && fechaBuscar[7] == '-' &&
+            fechaBuscar[0] >= '0' && fechaBuscar[0] <= '9' &&
+            fechaBuscar[1] >= '0' && fechaBuscar[1] <= '9' &&
+            fechaBuscar[2] >= '0' && fechaBuscar[2] <= '9' &&
+            fechaBuscar[3] >= '0' && fechaBuscar[3] <= '9' &&
+            fechaBuscar[5] >= '0' && fechaBuscar[5] <= '9' &&
+            fechaBuscar[6] >= '0' && fechaBuscar[6] <= '9' &&
+            fechaBuscar[8] >= '0' && fechaBuscar[8] <= '9' &&
+            fechaBuscar[9] >= '0' && fechaBuscar[9] <= '9') {
+            fechaValida = true;
+        } else {
+            cout << "[!] Formato de fecha invalido, use el formato: YYYY-MM-DD\n";
+        }
+
+    } while (!fechaValida);
+
 
     bool encontrado = false;
     cout << "\n=== Diagnosticos registrados en la fecha: " << fechaBuscar << " ===\n";
     for (int i = 0; i < total; i++){
         if (historial[i].fecha == fechaBuscar){
             cout << "\nPaciente: " << historial[i].nombrePaciente << endl;
-            cout << "Diagostico: " << historial[i].descripcion << endl;
+            cout << "DNI: " << historial[i].dni << endl;
+            cout << "Diagnostico: " << historial[i].descripcion << endl;
             cout << "---------------------------------------\n";
             encontrado = true;
         }
@@ -244,5 +374,53 @@ void buscarPorFecha(Diagnostico historial[], int total){
     if (!encontrado){
         cout << "[!] No se encontraron diagnosticos para esa fecha\n";
     }
+}
 
+void buscarPorDNI(Diagnostico historial[], int total) {
+    
+    cout << "\n ====================================" << endl;
+    cout << "|    BUSQUEDA POR DNI DE PACIENTE    |" << endl;
+    cout << " ====================================\n";
+
+    string dniBuscar;
+	bool dniValido = false;
+
+	do {
+	    cout << "Ingrese el DNI a buscar (8 digitos): ";
+	    getline(cin, dniBuscar);
+	
+	    int contador = 0;
+	    bool soloDigitos = true;
+	
+	    for (int i = 0; dniBuscar[i] != '\0'; i++) {
+	        if (dniBuscar[i] >= '0' && dniBuscar[i] <= '9') {
+	            contador++;
+	        } else {
+	            soloDigitos = false;
+	            break;
+	        }
+	    }
+	
+	    if (contador == 8 && soloDigitos) {
+	        dniValido = true;
+	    } else {
+	        cout << "[!] DNI invalido, debe contener exactamente 8 digitos numericos\n";
+	    }
+	} while (!dniValido);
+	
+    bool encontrado = false;
+    for (int i = 0; i < total; i++) {
+        if (historial[i].dni == dniBuscar) {
+        	cout << "\n=== Diagnostico del paciente con DNI " << dniBuscar << " ===\n";
+            cout << "\nPaciente: " << historial[i].nombrePaciente << endl;
+            cout << "Fecha: " << historial[i].fecha << endl;
+            cout << "Diagnostico: " << historial[i].descripcion << endl;
+            cout << "--------------------------------------" << endl;
+            encontrado = true;
+        }
+    }
+
+    if (!encontrado) {
+        cout << "\n[!] No se encontraron diagnosticos para ese DNI\n";
+    }
 }
