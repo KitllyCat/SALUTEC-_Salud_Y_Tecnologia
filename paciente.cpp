@@ -87,7 +87,7 @@ R_Paciente[9]={
             }
         }
         if (!Evalido) {
-            cout << "Edad invalida"<<endl<<endl;
+            cout << "Edad inválida"<<endl<<endl;
         }
     } while (!Evalido); 
     cout<<endl;
@@ -120,7 +120,7 @@ R_Paciente[9]={
         	break;
         }
         if (TS!=true){
-            cout << "Tipo de sangre invalido"<<endl<<endl;
+            cout << "Tipo de sangre inválido"<<endl<<endl;
 		}
     }while(TS!=true);
     cout<<endl;
@@ -217,6 +217,7 @@ void Eliminar_Paciente(Paciente Registro[], int &cont){
 }
 
 void Actualizar_Nombre(Paciente Registro[], int &cont){  
+
 	string Nnombre;
 	cout<<"Ingrese el nombre : ";
 	cin.ignore();
@@ -227,15 +228,21 @@ void Actualizar_Nombre(Paciente Registro[], int &cont){
 		if(Registro[i].nombre == Nnombre){
 			cout<<"Actualizar nombre: ";
 			getline(cin, Registro[i].nombre);
+			for (size_t j = 0; j < Registro[i].nombre.size(); ++j) {
+				char c = Registro[i].nombre[j];
+				if (c >= 'a' && c <= 'z') {
+					Registro[i].nombre[j] = c - ('a' - 'A');
+				}
+			}
 			
 			cout<<endl;
-			
-			cout<<"-----------Dato actualizado------------"<<endl<<endl;
+			cout<<"-----------Paciente actualizado------------"<<endl<<endl;
 			
 			act = true;
 			break;
 			}
-		}		
+		}	
+		
 	if(!act){
 		cout<<endl;
 		cout<<"-------------------Paciente no encontrado---------------------"<<endl;
@@ -267,7 +274,7 @@ void Actualizar_Edad(Paciente Registro[], int &cont){
         }
         if (!Evalido) {
         	cout<<endl;
-            cout << "Edad invalida"<<endl<<endl;
+            cout << "Edad inválida"<<endl<<endl;
         }
     } while (!Evalido); 
 			cout<<endl;
@@ -337,19 +344,19 @@ void Actualizar_Direccion(Paciente Registro[], int &cont){
 	cout<<"Ingrese el nombre : ";
 	cin.ignore();
     getline(cin,Nnombre);
-    for (size_t i = 0; i < Nnombre.size(); ++i) {
-        char c = =Nnombre[i];
-        if (c >= 'a' && c <= 'z') {
-            Nnombre[i] = c - ('a' - 'A');
-        }
-    }
     cout<<endl;
     bool act =false;
     for(int i=0;i<cont;i++){
 		if(Registro[i].nombre == Nnombre){
 			cout<<"Actualizar dirección: ";
 			getline(cin, Registro[i].direccion);
-    
+			for (size_t j = 0; j < Registro[i].direccion.size(); ++j) {
+				char c = Registro[i].direccion[j];
+				if (c >= 'a' && c <= 'z') {
+					Registro[i].direccion[j] = c - ('a' - 'A');
+				}
+			}
+			
 			cout<<endl;
 			cout<<"-----------Dato actualizado------------"<<endl<<endl;
 			
