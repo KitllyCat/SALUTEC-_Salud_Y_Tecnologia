@@ -3,64 +3,88 @@
 #include <string>
 #include "search.h"
 #include "paciente.h"
+#include "colors.h"
 using namespace std;
 
 void showPatient(Paciente pacient){
-    cout << "Nombre: " << pacient.nombre;
-    cout << "DNI: " << pacient.DNI;
-    cout << "Edad: " << pacient.edad;
-    cout << "Sexo: " << pacient.sexo;
-    cout << "Tipo de sangre: " << pacient.T_sangre;
-    cout << "Número celular: " << pacient.numero;
-    cout << "Dirección" << pacient.direccion;
+	cout<<CYAN<<" ╔═════════════════════"<<BLUE<<"●•●"<<CYAN<<"═════════════════════╗"<<endl;
+    cout<<"  Nombre: " << pacient.nombre << endl;
+    cout<<"  DNI: " << pacient.DNI << endl;
+    cout<<"  Edad: " << pacient.edad << endl;
+    cout<<"  Sexo: " << pacient.sexo << endl;
+    cout<<"  Tipo de sangre: " << pacient.T_sangre << endl;
+    cout<<"  Número celular: " << pacient.numero << endl;
+    cout<<"  Dirección" << pacient.direccion << endl;
+    cout<<" ╚═════════════════════"<<BLUE<<"●•●"<<CYAN<<"═════════════════════╝"<<endl<<endl;
 }
 
-void listPatients(Paciente pacient[], int count){
-    if (count != 0){
-        cout << "Listado general de pacientes" << endl;
-        for (int i = 0; i < count; i++) {
-            cout << "Paciente N°" << i + 1 << ":" << endl;
+void listPatients(Paciente* pacient, int count) {
+    if (cont != 0){
+        cout<<CYAN<<" ╔══════════════════════════════════•●•══════════════════════════════════╗"<<endl;
+		cout<<" ║                  LISTADO GENERAL DE LOS PACIENTES                     ║"<<endl;
+		cout<<" ╚══════════════════════════════════•●•══════════════════════════════════╝"<<endl<<endl;
+        for (int i = 0; i < cont; i++) {
+            cout << BLUE<<" Paciente N°" << i + 1 << ":" << endl;
             showPatient(pacient[i]);
         }
     }else {
-        cout << "ERROR - Ni un paciente registrado." << endl;
+        cout << RED <<" ERROR!!! - Ni un paciente registrado." << endl;
+        Sleep(1500); system("cls");
     }
     cout << endl;
+    cout<<" Presione enter para regresar al menú...";
+	cin.ignore(); cin.get();
+	system("cls");
 }
 
-void searchPatientByName(Paciente pacient[], int count){
+void searchPatientByName(Paciente pacient[], int &count){
     string nombre;
-    cout << "Ingrese el nombre que desea buscar:" << endl;
+    cout<<CYAN<<" ╔══════════════════════════════════•●•══════════════════════════════════╗"<<endl;
+	cout<<" ║                          BUSCAR POR NOMBRE                            ║"<<endl;
+	cout<<" ╚══════════════════════════════════•●•══════════════════════════════════╝"<<endl<<endl;
+    cout << CYAN<<" Ingrese el nombre que desea buscar:" ;
+    cin.ignore();
     getline(cin, nombre);
     bool encontrado = false;
     for (int i = 0; i < count; i++) {
         if (pacient[i].nombre == nombre) {
-            cout << "Paciente encontrado:" << endl;
+            cout <<endl<< GREEN<<" Paciente encontrado:" << endl;
             showPatient(pacient[i]);
+            cout<<" Presione enter para regresar al menú...";
+			cin.ignore(); cin.get();
+			system("cls");
             encontrado = true;
             break;
         }
     }
     if (!encontrado) {
-        cout << "Paciente no encontrado." << endl;
+        cout << RED << " Paciente no encontrado!!!" << endl;
+        Sleep(1500); system("cls");
     }
 }
 
-void searchPatientByDNI(Paciente pacient[], int count){
+void searchPatientByDNI(Paciente pacient[], int &count){
+	cout<<CYAN<<" ╔══════════════════════════════════•●•══════════════════════════════════╗"<<endl;
+	cout<<" ║                           BUSCAR POR DNI                              ║"<<endl;
+	cout<<" ╚══════════════════════════════════•●•══════════════════════════════════╝"<<endl<<endl;
     string dni;
-    cout << "Ingrese el DNI que desea buscar:" << endl;
+    cout << CYAN<<" Ingrese el DNI que desea buscar:" ;
     cin >> dni;
     cin.ignore();
     bool encontrado = false;
     for (int i = 0; i < count; i++) {
         if (pacient[i].DNI == dni) {
-            cout << "Paciente encontrado:" << endl;
+            cout << GREEN <<" Paciente encontrado:" << endl;
             showPatient(pacient[i]);
+            cout<<" Presione enter para regresar al menú...";
+			cin.ignore(); cin.get();
+			system("cls");
             encontrado = true;
             break;
         }
     }
     if (!encontrado) {
-        cout << "Paciente no encontrado." << endl;
+        cout << RED <<" Paciente no encontrado!!!" << endl;
+    	Sleep(1500); system("cls");
     }
 }
