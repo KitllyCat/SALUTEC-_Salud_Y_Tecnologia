@@ -2,3 +2,4 @@
 *.o
 *.win
 *.layout
+*.gch

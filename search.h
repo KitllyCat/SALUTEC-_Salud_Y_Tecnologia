@@ -1,10 +1,13 @@
 #ifndef SEARCH_H
 #define SEARCH_H
 #include "paciente.h"
+#include <iostream>
+#include <windows.h>
+#include <string>
 
-void showPatient(Paciente pacient[], int count); //Muestra los datos de los pacientes
-void listPatients(Paciente pacient[], int count); //Listado general de pacientes
-void searchPatientByName(Paciente pacient[], int count); //Listado de pacientes ordenados por nombre
-void searchPatientByDNI(Paciente pacient[], int count); //Listado de pacientes ordenado por DNI
+void showPatient(Paciente paciente); //Muestra los datos de los pacientes
+void listPatients(Paciente paciente[], int cont); //Listado general de pacientes
+void searchPatientByName(Paciente paciente[], int cont); //Listado de pacientes ordenados por nombre
+void searchPatientByDNI(Paciente paciente[], int cont); //Listado de pacientes ordenado por DNI
 
 #endif

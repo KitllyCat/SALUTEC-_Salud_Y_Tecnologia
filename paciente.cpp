@@ -1,8 +1,12 @@
+#include <iostream>
+#include <windows.h>
+#include <string>
 #include "paciente.h"
+#include "menus.h"
 
 using namespace std;
 
-R_Paciente[9]={
+Paciente Registro[Cant]={
 	{"Ureliano Buendia", "60449025", "18", "M", "O+", "923094702", "Miraflores - Av. Torres"},
 	{"Olaf Linares", "33096724", "20", "M", "O-", "907539421", "Barranco - Calle Los Pardos"},
 	{"Maricielo Tapia", "90337611","22", "F", "O+", "926983513", "Madgalena - Av. Los Alamos"},
@@ -15,10 +19,9 @@ R_Paciente[9]={
 	{"Diego Jaramillo", "60456915","33", "M", "O-", "921957740", "Metropolitano - Av. Tacna"},
 
 };
-    Paciente Registro[Cant];
-    int cont=10;
+int cont=10;
 
-	void Agregar_Paciente(Paciente Registro[], int &cont){
+void Agregar_Paciente(Paciente Registro[], int &cont){
 	cout << "==========================================================" << endl;
     cout << "                REGISTRO DE PACIENTE" << endl;
     cout << "==========================================================" << endl;
@@ -297,7 +300,7 @@ void Actualizar_Numero(Paciente Registro[], int &cont){
 	cin.ignore();
     getline(cin,Nnombre);
     for (size_t i = 0; i < Nnombre.size(); ++i) {
-        char c = =Nnombre[i];
+        char c = Nnombre[i];
         if (c >= 'a' && c <= 'z') {
             Nnombre[i] = c - ('a' - 'A');
         }
@@ -373,7 +376,6 @@ void Actualizar_Direccion(Paciente Registro[], int &cont){
 
 void Actualizar_Paciente(Paciente Registro[], int &cont){
 	
-	void menuR_Pacientes();
 	if(cont!=0){
 	
 	cout<<"==========================================================" << endl;

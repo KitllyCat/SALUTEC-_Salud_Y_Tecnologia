@@ -1,6 +1,8 @@
 #include <iostream>
+#include <windows.h>
 #include <string>
 #include "historial.h"
+#include "paciente.h"
 using namespace std;
 
 Diagnostico historial[100] = {
@@ -242,6 +244,5 @@ void buscarPorFecha(Diagnostico historial[], int total){
     if (!encontrado){
         cout << "[!] No se encontraron diagnosticos para esa fecha\n";
     }
+
 }
-
-

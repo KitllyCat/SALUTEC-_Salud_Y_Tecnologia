@@ -1,6 +1,7 @@
 #ifndef HISTORIAL_H
 #define HISTORIAL_H
-
+#include <iostream>
+#include <windows.h>
 #include <string>
 using namespace std;
 

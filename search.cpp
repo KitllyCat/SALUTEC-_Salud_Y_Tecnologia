@@ -1,6 +1,8 @@
 #include <iostream>
+#include <windows.h>
 #include <string>
 #include "search.h"
+#include "paciente.h"
 using namespace std;
 
 void showPatient(Paciente pacient){
@@ -45,7 +47,7 @@ void searchPatientByName(Paciente pacient[], int count){
 }
 
 void searchPatientByDNI(Paciente pacient[], int count){
-    int dni;
+    string dni;
     cout << "Ingrese el DNI que desea buscar:" << endl;
     cin >> dni;
     cin.ignore();
