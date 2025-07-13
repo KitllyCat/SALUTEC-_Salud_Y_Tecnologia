@@ -1,44 +1,202 @@
+#include <iostream>
+#include <windows.h>
+#include <string>
 #include "menus.h"
 #include "paciente.h"
+#include "historial.h"
+#include "search.h"
+#include "colors.h"
+
+void activarANSI(){ //funcion para poner soporte de secuencias ANSI en la consola (cmd/powershell), y se pueda ver el color
+    HANDLE hOut=GetStdHandle(STD_OUTPUT_HANDLE);
+    DWORD dwMode=0;
+    GetConsoleMode(hOut,&dwMode);
+    dwMode|=ENABLE_VIRTUAL_TERMINAL_PROCESSING;
+    SetConsoleMode(hOut,dwMode);
+}
+
+void intro(){
+	Sleep(100);
+	cout<<"╔══════════════════════════════•●•══════════════════════════════╗"<<endl;
+	cout<<"║░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░░█████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░███████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░██░░░██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░██████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░░██████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░░░░░░██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░░░░░░██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░██░░░██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░███████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░░█████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"╚══════════════════════════════•●•══════════════════════════════╝"<<endl;
+	Sleep(250);system("cls");
+	cout<<"╔══════════════════════════════•●•══════════════════════════════╗"<<endl;
+	cout<<"║░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░░█████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░███████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░██░░░██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░██░░░░░░░█████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░██░░░░░░███████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░██████░░██░░░██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░░██████░░░░░░██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░░░░░░██░░██████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░░░░░░██░██░░░██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░██░░░██░██░░░██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░███████░███████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░░█████░░░██████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"╚══════════════════════════════•●•══════════════════════════════╝"<<endl;
+	Sleep(250);system("cls");
+	cout<<"╔══════════════════════════════•●•══════════════════════════════╗"<<endl;
+	cout<<"║░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░░█████░░░░░░░░░░██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░███████░░░░░░░░░██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░██░░░██░░░░░░░░░██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░██░░░░░░░█████░░██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░██░░░░░░███████░██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░██████░░██░░░██░██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░░██████░░░░░░██░██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░░░░░░██░░██████░██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░░░░░░██░██░░░██░██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░██░░░██░██░░░██░██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░███████░███████░██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░░█████░░░██████░██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"╚══════════════════════════════•●•══════════════════════════════╝"<<endl;
+	Sleep(250);system("cls");
+	cout<<"╔══════════════════════════════•●•══════════════════════════════╗"<<endl;
+	cout<<"║░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░░█████░░░░░░░░░░██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░███████░░░░░░░░░██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░██░░░██░░░░░░░░░██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░██░░░░░░░█████░░██░██░░░██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░██░░░░░░███████░██░██░░░██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░██████░░██░░░██░██░██░░░██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░░██████░░░░░░██░██░██░░░██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░░░░░░██░░██████░██░██░░░██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░░░░░░██░██░░░██░██░██░░░██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░██░░░██░██░░░██░██░██░░░██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░███████░███████░██░███████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░░█████░░░██████░██░░█████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"╚══════════════════════════════•●•══════════════════════════════╝"<<endl;
+	Sleep(250);system("cls");
+	cout<<"╔══════════════════════════════•●•══════════════════════════════╗"<<endl;
+	cout<<"║░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░░█████░░░░░░░░░░██░░░░░░░░░░██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░███████░░░░░░░░░██░░░░░░░░░░██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░██░░░██░░░░░░░░░██░░░░░░░░░░██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░██░░░░░░░█████░░██░██░░░██░████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░██░░░░░░███████░██░██░░░██░████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░██████░░██░░░██░██░██░░░██░░██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░░██████░░░░░░██░██░██░░░██░░██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░░░░░░██░░██████░██░██░░░██░░██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░░░░░░██░██░░░██░██░██░░░██░░██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░██░░░██░██░░░██░██░██░░░██░░██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░███████░███████░██░███████░░████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░░█████░░░██████░██░░█████░░░░██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"╚══════════════════════════════•●•══════════════════════════════╝"<<endl;
+	Sleep(250);system("cls");
+	cout<<"╔══════════════════════════════•●•══════════════════════════════╗"<<endl;
+	cout<<"║░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░░█████░░░░░░░░░░██░░░░░░░░░░██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░███████░░░░░░░░░██░░░░░░░░░░██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░██░░░██░░░░░░░░░██░░░░░░░░░░██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░██░░░░░░░█████░░██░██░░░██░████░░░█████░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░██░░░░░░███████░██░██░░░██░████░░███████░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░██████░░██░░░██░██░██░░░██░░██░░░██░░░██░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░░██████░░░░░░██░██░██░░░██░░██░░░██░░░██░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░░░░░░██░░██████░██░██░░░██░░██░░░███████░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░░░░░░██░██░░░██░██░██░░░██░░██░░░██░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░██░░░██░██░░░██░██░██░░░██░░██░░░██░░░██░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░███████░███████░██░███████░░████░███████░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░░█████░░░██████░██░░█████░░░░██░░░█████░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"╚══════════════════════════════•●•══════════════════════════════╝"<<endl;
+	Sleep(250);system("cls");
+	cout<<"╔══════════════════════════════•●•══════════════════════════════╗"<<endl;
+	cout<<"║░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░░█████░░░░░░░░░░██░░░░░░░░░░██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░███████░░░░░░░░░██░░░░░░░░░░██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░██░░░██░░░░░░░░░██░░░░░░░░░░██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░██░░░░░░░█████░░██░██░░░██░████░░░█████░░░█████░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░██░░░░░░███████░██░██░░░██░████░░███████░███████░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░██████░░██░░░██░██░██░░░██░░██░░░██░░░██░██░░░██░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░░██████░░░░░░██░██░██░░░██░░██░░░██░░░██░██░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░░░░░░██░░██████░██░██░░░██░░██░░░███████░██░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░░░░░░██░██░░░██░██░██░░░██░░██░░░██░░░░░░██░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░██░░░██░██░░░██░██░██░░░██░░██░░░██░░░██░██░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░███████░███████░██░███████░░████░███████░███████░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░░█████░░░██████░██░░█████░░░░██░░░█████░░░█████░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"╚══════════════════════════════•●•══════════════════════════════╝"<<endl;
+	Sleep(250);system("cls");
+	cout<<"╔══════════════════════════════•●•══════════════════════════════╗"<<endl;
+	cout<<"║░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░░█████░░░░░░░░░░██░░░░░░░░░░██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░███████░░░░░░░░░██░░░░░░░░░░██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░██░░░██░░░░░░░░░██░░░░░░░░░░██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"║░██░░░░░░░█████░░██░██░░░██░████░░░█████░░░█████░░░░░░░███░░░░░║"<<endl;
+	cout<<"║░██░░░░░░███████░██░██░░░██░████░░███████░███████░░░░░░███░░░░░║"<<endl;
+	cout<<"║░██████░░██░░░██░██░██░░░██░░██░░░██░░░██░██░░░██░░░░░░███░░░░░║"<<endl;
+	cout<<"║░░██████░░░░░░██░██░██░░░██░░██░░░██░░░██░██░░░░░░░░█████████░░║"<<endl;
+	cout<<"║░░░░░░██░░██████░██░██░░░██░░██░░░███████░██░░░░░░░░█████████░░║"<<endl;
+	cout<<"║░░░░░░██░██░░░██░██░██░░░██░░██░░░██░░░░░░██░░░░░░░░█████████░░║"<<endl;
+	cout<<"║░██░░░██░██░░░██░██░██░░░██░░██░░░██░░░██░██░░░░░░░░░░░███░░░░░║"<<endl;
+	cout<<"║░███████░███████░██░███████░░████░███████░███████░░░░░░███░░░░░║"<<endl;
+	cout<<"║░░█████░░░██████░██░░█████░░░░██░░░█████░░░█████░░░░░░░███░░░░░║"<<endl;
+	cout<<"║░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<"╚══════════════════════════════•●•══════════════════════════════╝"<<endl;
+	Sleep(1000);
+	cout<<endl<<"\t\t  SALUTEC - SALUD Y TECNOLOGIA"<<endl;
+	Sleep(2500);
+	system("cls");
+}
 
 void menuPrincipal(){
-	int opcion;
+	char opcion;
 	do{
-		cout<< "---SALUTEC--SALUD-Y-TECNOLOGIA-----"<<endl<<endl;
-		cout<<"Elija la opcion que desea realizar en el programa:"<<endl;
-		cout<<"1) Acceder al registro de pacientes"<<endl;
-		cout<<"2) Eliminar un contacto existente"<<endl;
-		cout<<"3) Mostrar todos los contactos guardados"<<endl;
-		cout<<"4) Mostrar todos los contactos guardados en orden de correos"<<endl;
-		cout<<"5) Salir"<<endl;
+
+		cout<<BLUE<<"\t\t  SALUTEC - SALUD Y TECNOLOGIA"<<endl<<endl;
+		cout<<" Bienvenido a Salutec, una clinica que "<<endl;
+		cout<<" Elija la opcion que desea realizar en el programa:"<<endl;
+		cout<<"A) Acceder al registro de los pacientes"<<endl;
+		cout<<"B) Acceder al historial medico de los pacientes"<<endl;
+		cout<<"C) Acceder a la base de datos de  los pacientes"<<endl;
+		cout<<"D) Salir"<<endl<<endl;
 		cout<<"Selecione su opcion: ";
 		cin>>opcion;
 		cout<<endl;
 		
 		switch(opcion){
-			case 1:{
+			case 'A':
+			case 'a':{
 				system("cls");
 				menuR_Pacientes();
 				break;
 			}
-			case 2:{
+			case 'B':
+			case 'b':{
 				system("cls");
-				//eliminarContacto();
+				menuHistorial();
 				break;
 			}
-			case 3:{
+			case 'C':
+			case 'c':{
 				system("cls");
-				//mostrarListadoRegistrados();
+				menuDatos();
 				break;
 			}
-			case 4:{
-				system("cls");
-				//mostrarListadoExistentes();
-				break;
-			}
-			case 5:{
+			case 'D':
+			case 'd':{
 				system("cls");
 				cout<<"Saliendo del programa..."<<endl;
+				Sleep(1500);system("cls");
 				break;
 			}
 			default:{
@@ -50,44 +208,44 @@ void menuPrincipal(){
 		}
 	}while(opcion!=5);
 }
+
 void menuR_Pacientes(){
-	int opcion;
+	char opcion;
 	do{
-		cout<< "---SALUTEC--SALUD-Y-TECNOLOGIA-----"<<endl<<endl;
-		cout<<"Elija la opcion que desea realizar en el programa:"<<endl;
-		cout<<"1) agregar paciente"<<endl;
-		cout<<"2) Eliminar paciente"<<endl;
-		cout<<"3) actualizar paciente"<<endl;
-		cout<<"4) Mostrar todos los pacientes"<<endl;
-		cout<<"5) Salir"<<endl;
+		cout<<"\t\t  SALUTEC - SALUD Y TECNOLOGIA"<<endl<<endl;
+		cout<<"Escoja la opcion que desea realizar en el menú:"<<endl;
+		cout<<"A) Agregar paciente"<<endl;
+		cout<<"B) Eliminar paciente"<<endl;
+		cout<<"C) Actualizar paciente"<<endl;
+		cout<<"D) Regresar al menu principal..."<<endl<<endl;
 		cout<<"Selecione su opcion: ";
 		cin>>opcion;
 		cout<<endl;
 		
 		switch(opcion){
-			case 1:{
+			case 'A':
+			case 'a':{
 				system("cls");
 				Agregar_Paciente(Registro, cont);
 				break;
 			}
-			case 2:{
+			case 'B':
+			case 'b':{
 				system("cls");
 				Eliminar_Paciente(Registro, cont);
 				break;
 			}
-			case 3:{
+			case 'C':
+			case 'c':{
 				system("cls");
 				Actualizar_Paciente(Registro, cont);
 				break;
 			}
-			case 4:{
-				system("cls");
-				//mostrarListadoExistentes();
-				break;
-			}
-			case 5:{
-				system("cls");
-				cout<<"Saliendo del programa..."<<endl;
+			case 'D':
+			case 'd':{
+				cout<<endl<<"Regresando al menú principal..."<<endl;
+				Sleep(1500);system("cls");
+				menuPrincipal();
 				break;
 			}
 			default:{
@@ -99,6 +257,109 @@ void menuR_Pacientes(){
 		}
 	}while(opcion!=5);
 }
+
 void menuHistorial(){
+	char opcion;
+	do{
+		cout<<"\t\t  SALUTEC - SALUD Y TECNOLOGIA"<<endl<<endl;
+		cout<<"Escoja la opcion que desea realizar en el menú:"<<endl;
+		cout<<"A) Registrar un nuevo diagnostico"<<endl;
+		cout<<"B) Mostrar el historial diagnostico"<<endl;
+		cout<<"C) Modificar el diagnogtico de un paciente"<<endl;
+		cout<<"D) Buscar el diagnostico por fecha"<<endl;
+		cout<<"E) Regresar al menu principal..."<<endl<<endl;
+		cout<<"Selecione su opcion: ";
+		cin>>opcion;
+		cout<<endl;
+		
+		switch(opcion){
+			case 'A':
+			case 'a':{
+				system("cls");
+				registrarDiagnostico(historial, totalDiagnosticos);
+				break;
+			}
+			case 'B':
+			case 'b':{
+				system("cls");
+				mostrarHistorial(historial, totalDiagnosticos);
+				break;
+			}
+			case 'C':
+			case 'c':{
+				system("cls");
+				modificarDiagnostico(historial, totalDiagnosticos);
+				break;
+			}
+			case 'D':
+			case 'd':{
+				system("cls");
+				buscarPorFecha(historial, totalDiagnosticos);
+				break;
+			}
+			case 'E':
+			case 'e':{
+				cout<<endl<<"Regresando al menú principal..."<<endl;
+				Sleep(1500);system("cls");
+				menuPrincipal();
+				break;
+			}
+			default:{
+				cout<<"Opción invalida!!! Intente de nuevo..."<<endl;
+				Sleep(1500);
+				system("cls");
+				break;
+			}
+		}
+	}while(opcion!=5);
+}
+
+void menuDatos(){
 	
+	char opcion;
+	do{
+		cout<<"\t\t  SALUTEC - SALUD Y TECNOLOGIA"<<endl<<endl;
+		cout<<"Escoja la opcion que desea realizar en el menú:"<<endl;
+		cout<<"A) Mostrar el listado de pacientes"<<endl;
+		cout<<"B) Buscar a un paciente por nombre"<<endl;
+		cout<<"C) Buscar a un paciente por su DNI"<<endl;
+		cout<<"D) Regresar al menu principal..."<<endl<<endl;
+		cout<<"Selecione su opcion: ";
+		cin>>opcion;
+		cout<<endl;
+		
+		switch(opcion){
+			case 'A':
+			case 'a':{
+				system("cls");
+				listPatients(Registro, cont);
+				break;
+			}
+			case 'B':
+			case 'b':{
+				system("cls");
+				searchPatientByName(Registro, cont);
+				break;
+			}
+			case 'C':
+			case 'c':{
+				system("cls");
+				searchPatientByDNI(Registro, cont);
+				break;
+			}
+			case 'D':
+			case 'd':{
+				cout<<endl<<"Regresando al menú principal..."<<endl;
+				Sleep(1500);system("cls");
+				menuPrincipal();
+				break;
+			}
+			default:{
+				cout<<"Opción invalida!!! Intente de nuevo..."<<endl;
+				Sleep(1500);
+				system("cls");
+				break;
+			}
+		}
+	}while(opcion!=5);
 }

@@ -1,7 +1,19 @@
 #ifndef HISTORIAL_H
 #define HISTORIAL_H
+#include <iostream>
+#include <windows.h>
+#include <string>
+using namespace std;
 
-void registrarDiagnostico();
-void mostrarHistorial();
+struct Diagnostico {
+    string nombrePaciente;
+    string fecha;
+    string descripcion;
+};
+
+void registrarDiagnostico(Diagnostico historial[], int &total);
+void mostrarHistorial(Diagnostico historial[], int &total);
+void modificarDiagnostico(Diagnostico historial[], int total);
+void buscarPorFecha(Diagnostico historial[], int total);
 
 #endif

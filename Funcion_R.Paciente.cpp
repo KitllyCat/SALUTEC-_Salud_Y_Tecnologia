@@ -36,10 +36,10 @@ void(Paciente Registro[], int &cont){
     cout<<endl;
     cout<<"Tipo de sangre: ";
     getline(cin, Registro[cont].T_sangre);
-    cout<<"Número: ";
+    cout<<"NÃºmero: ";
     cout<<endl;
     cin>>Registro[cont].numero;
-    cout<<"Dirección: ";
+    cout<<"DirecciÃ³n: ";
     cgetline(cin, Registro[cont].direccion);
 	cout<<endl;
 	
