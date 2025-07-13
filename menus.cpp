@@ -15,7 +15,7 @@ void activarANSI(){ //funcion para poner soporte de secuencias ANSI en la consol
     SetConsoleMode(hOut,dwMode);
 }
 
-void intro(){
+void intro(){ //funcion extremadamente innecesaria, pero igual implementada :3
 	Sleep(100);
 	cout<<CYAN<<"╔══════════════════════════════•●•══════════════════════════════╗"<<endl; 
 	cout<<CYAN<<"║░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
@@ -113,7 +113,7 @@ void intro(){
 	cout<<CYAN<<"║░░"<<BLUE<<"██████"<<CYAN<<"░░░░░░"<<BLUE<<"██"<<CYAN<<"░"<<BLUE<<"██"<<CYAN<<"░"<<BLUE<<"██"<<CYAN<<"░░░"<<BLUE<<"██"<<CYAN<<"░░"<<BLUE<<"██"<<CYAN<<"░░░"<<BLUE<<"██"<<CYAN<<"░░░"<<BLUE<<"██"<<CYAN<<"░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
 	cout<<CYAN<<"║░░░░░░"<<BLUE<<"██"<<CYAN<<"░░"<<BLUE<<"██████"<<CYAN<<"░"<<BLUE<<"██"<<CYAN<<"░"<<BLUE<<"██"<<CYAN<<"░░░"<<BLUE<<"██"<<CYAN<<"░░"<<BLUE<<"██"<<CYAN<<"░░░"<<BLUE<<"███████"<<CYAN<<"░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
 	cout<<CYAN<<"║░░░░░░"<<BLUE<<"██"<<CYAN<<"░"<<BLUE<<"██"<<CYAN<<"░░░"<<BLUE<<"██"<<CYAN<<"░"<<BLUE<<"██"<<CYAN<<"░"<<BLUE<<"██"<<CYAN<<"░░░"<<BLUE<<"██"<<CYAN<<"░░"<<BLUE<<"██"<<CYAN<<"░░░"<<BLUE<<"██"<<CYAN<<"░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
-	cout<<CYAN<<"║░"<<BLUE<<"██░░░"<<BLUE<<"██"<<CYAN<<"░"<<BLUE<<"██"<<CYAN<<"░░░"<<BLUE<<"██"<<CYAN<<"░"<<BLUE<<"██"<<CYAN<<"░"<<BLUE<<"██"<<CYAN<<"░░░"<<BLUE<<"██"<<CYAN<<"░░"<<BLUE<<"██"<<CYAN<<"░░░"<<BLUE<<"██"<<CYAN<<"░░░"<<BLUE<<"██"<<CYAN<<"░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<CYAN<<"║░"<<BLUE<<"██"<<CYAN<<"░░░"<<BLUE<<"██"<<CYAN<<"░"<<BLUE<<"██"<<CYAN<<"░░░"<<BLUE<<"██"<<CYAN<<"░"<<BLUE<<"██"<<CYAN<<"░"<<BLUE<<"██"<<CYAN<<"░░░"<<BLUE<<"██"<<CYAN<<"░░"<<BLUE<<"██"<<CYAN<<"░░░"<<BLUE<<"██"<<CYAN<<"░░░"<<BLUE<<"██"<<CYAN<<"░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
 	cout<<CYAN<<"║░"<<BLUE<<"███████"<<CYAN<<"░"<<BLUE<<"███████"<<CYAN<<"░"<<BLUE<<"██"<<CYAN<<"░"<<BLUE<<"███████"<<CYAN<<"░░"<<BLUE<<"████"<<CYAN<<"░"<<BLUE<<"███████"<<CYAN<<"░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
 	cout<<CYAN<<"║░░"<<BLUE<<"█████"<<CYAN<<"░░░"<<BLUE<<"██████"<<CYAN<<"░"<<BLUE<<"██"<<CYAN<<"░░"<<BLUE<<"█████"<<CYAN<<"░░░░"<<BLUE<<"██"<<CYAN<<"░░░"<<BLUE<<"█████"<<CYAN<<"░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
 	cout<<CYAN<<"║░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
@@ -130,7 +130,7 @@ void intro(){
 	cout<<CYAN<<"║░░"<<BLUE<<"██████"<<CYAN<<"░░░░░░"<<BLUE<<"██"<<CYAN<<"░"<<BLUE<<"██"<<CYAN<<"░"<<BLUE<<"██"<<CYAN<<"░░░"<<BLUE<<"██"<<CYAN<<"░░"<<BLUE<<"██"<<CYAN<<"░░░"<<BLUE<<"██"<<CYAN<<"░░░"<<BLUE<<"██"<<CYAN<<"░"<<BLUE<<"██"<<CYAN<<"░░░░░░░░░░░░░░░░░░░║"<<endl;
 	cout<<CYAN<<"║░░░░░░"<<BLUE<<"██"<<CYAN<<"░░"<<BLUE<<"██████"<<CYAN<<"░"<<BLUE<<"██"<<CYAN<<"░"<<BLUE<<"██"<<CYAN<<"░░░"<<BLUE<<"██"<<CYAN<<"░░"<<BLUE<<"██"<<CYAN<<"░░░"<<BLUE<<"███████"<<CYAN<<"░"<<BLUE<<"██"<<CYAN<<"░░░░░░░░░░░░░░░░░░░║"<<endl;
 	cout<<CYAN<<"║░░░░░░"<<BLUE<<"██"<<CYAN<<"░"<<BLUE<<"██"<<CYAN<<"░░░"<<BLUE<<"██"<<CYAN<<"░"<<BLUE<<"██"<<CYAN<<"░"<<BLUE<<"██"<<CYAN<<"░░░"<<BLUE<<"██"<<CYAN<<"░░"<<BLUE<<"██"<<CYAN<<"░░░"<<BLUE<<"██"<<CYAN<<"░░░░░░"<<BLUE<<"██"<<CYAN<<"░░░░░░░░░░░░░░░░░░░║"<<endl;
-	cout<<CYAN<<"║░"<<BLUE<<"██░░░"<<BLUE<<"██"<<CYAN<<"░"<<BLUE<<"██"<<CYAN<<"░░░"<<BLUE<<"██"<<CYAN<<"░"<<BLUE<<"██"<<CYAN<<"░"<<BLUE<<"██"<<CYAN<<"░░░"<<BLUE<<"██"<<CYAN<<"░░"<<BLUE<<"██"<<CYAN<<"░░░"<<BLUE<<"██"<<CYAN<<"░░░"<<BLUE<<"██"<<CYAN<<"░"<<BLUE<<"██"<<CYAN<<"░░░░░░░░░░░░░░░░░░░║"<<endl;
+	cout<<CYAN<<"║░"<<BLUE<<"██"<<CYAN<<"░░░"<<BLUE<<"██"<<CYAN<<"░"<<BLUE<<"██"<<CYAN<<"░░░"<<BLUE<<"██"<<CYAN<<"░"<<BLUE<<"██"<<CYAN<<"░"<<BLUE<<"██"<<CYAN<<"░░░"<<BLUE<<"██"<<CYAN<<"░░"<<BLUE<<"██"<<CYAN<<"░░░"<<BLUE<<"██"<<CYAN<<"░░░"<<BLUE<<"██"<<CYAN<<"░"<<BLUE<<"██"<<CYAN<<"░░░░░░░░░░░░░░░░░░░║"<<endl;
 	cout<<CYAN<<"║░"<<BLUE<<"███████"<<CYAN<<"░"<<BLUE<<"███████"<<CYAN<<"░"<<BLUE<<"██"<<CYAN<<"░"<<BLUE<<"███████"<<CYAN<<"░░"<<BLUE<<"████"<<CYAN<<"░"<<BLUE<<"███████"<<CYAN<<"░"<<BLUE<<"███████"<<CYAN<<"░░░░░░░░░░░░░░║"<<endl;
 	cout<<CYAN<<"║░░"<<BLUE<<"█████"<<CYAN<<"░░░"<<BLUE<<"██████"<<CYAN<<"░"<<BLUE<<"██"<<CYAN<<"░░"<<BLUE<<"█████"<<CYAN<<"░░░░"<<BLUE<<"██"<<CYAN<<"░░░"<<BLUE<<"█████"<<CYAN<<"░░░"<<BLUE<<"█████"<<CYAN<<"░░░░░░░░░░░░░░░║"<<endl; 
 	cout<<CYAN<<"║░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
@@ -147,7 +147,7 @@ void intro(){
 	cout<<CYAN<<"║░░"<<BLUE<<"██████"<<CYAN<<"░░░░░░"<<BLUE<<"██"<<CYAN<<"░"<<BLUE<<"██"<<CYAN<<"░"<<BLUE<<"██"<<CYAN<<"░░░"<<BLUE<<"██"<<CYAN<<"░░"<<BLUE<<"██"<<CYAN<<"░░░"<<BLUE<<"██"<<CYAN<<"░░░"<<BLUE<<"██"<<CYAN<<"░"<<BLUE<<"██"<<CYAN<<"░░░░░░░░"<<RED<<"█████████"<<CYAN<<"░░║"<<endl;
 	cout<<CYAN<<"║░░░░░░"<<BLUE<<"██"<<CYAN<<"░░"<<BLUE<<"██████"<<CYAN<<"░"<<BLUE<<"██"<<CYAN<<"░"<<BLUE<<"██"<<CYAN<<"░░░"<<BLUE<<"██"<<CYAN<<"░░"<<BLUE<<"██"<<CYAN<<"░░░"<<BLUE<<"███████"<<CYAN<<"░"<<BLUE<<"██"<<CYAN<<"░░░░░░░░"<<RED<<"█████████"<<CYAN<<"░░║"<<endl;
 	cout<<CYAN<<"║░░░░░░"<<BLUE<<"██"<<CYAN<<"░"<<BLUE<<"██"<<CYAN<<"░░░"<<BLUE<<"██"<<CYAN<<"░"<<BLUE<<"██"<<CYAN<<"░"<<BLUE<<"██"<<CYAN<<"░░░"<<BLUE<<"██"<<CYAN<<"░░"<<BLUE<<"██"<<CYAN<<"░░░"<<BLUE<<"██"<<CYAN<<"░░░░░░"<<BLUE<<"██"<<CYAN<<"░░░░░░░░"<<RED<<"█████████"<<CYAN<<"░░║"<<endl;
-	cout<<CYAN<<"║░"<<BLUE<<"██░░░"<<BLUE<<"██"<<CYAN<<"░"<<BLUE<<"██"<<CYAN<<"░░░"<<BLUE<<"██"<<CYAN<<"░"<<BLUE<<"██"<<CYAN<<"░"<<BLUE<<"██"<<CYAN<<"░░░"<<BLUE<<"██"<<CYAN<<"░░"<<BLUE<<"██"<<CYAN<<"░░░"<<BLUE<<"██"<<CYAN<<"░░░"<<BLUE<<"██"<<CYAN<<"░"<<BLUE<<"██"<<CYAN<<"░░░░░░░░░░░"<<RED<<"███"<<CYAN<<"░░░░░║"<<endl;
+	cout<<CYAN<<"║░"<<BLUE<<"██"<<CYAN<<"░░░"<<BLUE<<"██"<<CYAN<<"░"<<BLUE<<"██"<<CYAN<<"░░░"<<BLUE<<"██"<<CYAN<<"░"<<BLUE<<"██"<<CYAN<<"░"<<BLUE<<"██"<<CYAN<<"░░░"<<BLUE<<"██"<<CYAN<<"░░"<<BLUE<<"██"<<CYAN<<"░░░"<<BLUE<<"██"<<CYAN<<"░░░"<<BLUE<<"██"<<CYAN<<"░"<<BLUE<<"██"<<CYAN<<"░░░░░░░░░░░"<<RED<<"███"<<CYAN<<"░░░░░║"<<endl;
 	cout<<CYAN<<"║░"<<BLUE<<"███████"<<CYAN<<"░"<<BLUE<<"███████"<<CYAN<<"░"<<BLUE<<"██"<<CYAN<<"░"<<BLUE<<"███████"<<CYAN<<"░░"<<BLUE<<"████"<<CYAN<<"░"<<BLUE<<"███████"<<CYAN<<"░"<<BLUE<<"███████"<<CYAN<<"░░░░░░"<<RED<<"███"<<CYAN<<"░░░░░║"<<endl;
 	cout<<CYAN<<"║░░"<<BLUE<<"█████"<<CYAN<<"░░░"<<BLUE<<"██████"<<CYAN<<"░"<<BLUE<<"██"<<CYAN<<"░░"<<BLUE<<"█████"<<CYAN<<"░░░░"<<BLUE<<"██"<<CYAN<<"░░░"<<BLUE<<"█████"<<CYAN<<"░░░"<<BLUE<<"█████"<<CYAN<<"░░░░░░░"<<RED<<"███"<<CYAN<<"░░░░░║"<<endl;
 	cout<<CYAN<<"║░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║"<<endl;
@@ -161,8 +161,9 @@ void intro(){
 void menuPrincipal(){
 	char opcion;
 	do{
-		cout<<endl<<CYAN<<"\t\t  SALUTEC - SALUD Y TECNOLOGIA"<<endl<<endl;
-		cout<<" Bienvenido a Salutec, una clinica donde tu salud es nuestra prioridad."<<endl;
+		cout<<endl<<CYAN<<"\t\t  SALUTEC - SALUD Y TECNOLOGIA"<<endl;
+		cout<<endl<<BLUE<<"\t\t        MENU PRINCIPAL"<<endl<<endl;
+		cout<<CYAN<<" Bienvenido a Salutec, una clinica donde tu salud es nuestra prioridad."<<endl;
 		cout<<" Elija la opcion que desea realizar en el programa:"<<endl;
 		cout<<" A) Acceder al registro de los pacientes"<<endl;
 		cout<<" B) Acceder al historial medico de los pacientes"<<endl;
@@ -194,30 +195,31 @@ void menuPrincipal(){
 			case 'D':
 			case 'd':{
 				system("cls");
-				cout<<"Saliendo del programa..."<<endl;
+				cout<<endl<<BLUE<<" Gracias por su visita~!!!"<<endl;
 				Sleep(1500);system("cls");
 				break;
 			}
 			default:{
-				cout<<"Opción invalida!!! Intente de nuevo..."<<endl;
+				cout<<RED<<" Opción invalida!!!"<<YELLOW<<" Intente de nuevo..."<<endl;
 				Sleep(1500);
 				system("cls");
 				break;
 			}
 		}
-	}while(opcion!=5);
+	}while(opcion != 'D' && opcion != 'd');
 }
 
 void menuR_Pacientes(){
 	char opcion;
 	do{
-		cout<<"\t\t  SALUTEC - SALUD Y TECNOLOGIA"<<endl<<endl;
-		cout<<"Escoja la opcion que desea realizar en el menú:"<<endl;
-		cout<<"A) Agregar paciente"<<endl;
-		cout<<"B) Eliminar paciente"<<endl;
-		cout<<"C) Actualizar paciente"<<endl;
-		cout<<"D) Regresar al menu principal..."<<endl<<endl;
-		cout<<"Selecione su opcion: ";
+		cout<<endl<<CYAN<<"\t\t  SALUTEC - SALUD Y TECNOLOGIA"<<endl;
+		cout<<endl<<BLUE<<"\t\t     REGISTRO DE PACIENTES"<<endl<<endl;
+		cout<<CYAN<<" Escoja la opcion que desea realizar en el menú:"<<endl;
+		cout<<" A) Agregar paciente"<<endl;
+		cout<<" B) Eliminar paciente"<<endl;
+		cout<<" C) Actualizar paciente"<<endl;
+		cout<<" D) Regresar al menu principal..."<<endl<<endl;
+		cout<<" Selecione su opcion: ";
 		cin>>opcion;
 		cout<<endl;
 		
@@ -242,13 +244,13 @@ void menuR_Pacientes(){
 			}
 			case 'D':
 			case 'd':{
-				cout<<endl<<"Regresando al menú principal..."<<endl;
+				cout<<endl<<" Regresando al menú principal..."<<endl;
 				Sleep(1500);system("cls");
 				menuPrincipal();
 				break;
 			}
 			default:{
-				cout<<"Opción invalida!!! Intente de nuevo..."<<endl;
+				cout<<RED<<" Opción invalida!!!"<<YELLOW<<" Intente de nuevo..."<<endl;
 				Sleep(1500);
 				system("cls");
 				break;
@@ -260,14 +262,15 @@ void menuR_Pacientes(){
 void menuHistorial(){
 	char opcion;
 	do{
-		cout<<"\t\t  SALUTEC - SALUD Y TECNOLOGIA"<<endl<<endl;
-		cout<<"Escoja la opcion que desea realizar en el menú:"<<endl;
-		cout<<"A) Registrar un nuevo diagnostico"<<endl;
-		cout<<"B) Mostrar el historial diagnostico"<<endl;
-		cout<<"C) Modificar el diagnogtico de un paciente"<<endl;
-		cout<<"D) Buscar el diagnostico por fecha"<<endl;
-		cout<<"E) Regresar al menu principal..."<<endl<<endl;
-		cout<<"Selecione su opcion: ";
+		cout<<endl<<CYAN<<"\t\t  SALUTEC - SALUD Y TECNOLOGIA"<<endl;
+		cout<<endl<<BLUE<<"\t\t        HISTORIAL MEDICO"<<endl<<endl;
+		cout<<CYAN<<" Escoja la opcion que desea realizar en el menú:"<<endl;
+		cout<<" A) Registrar un nuevo diagnostico"<<endl;
+		cout<<" B) Mostrar el historial diagnostico"<<endl;
+		cout<<" C) Modificar el diagnogtico de un paciente"<<endl;
+		cout<<" D) Buscar el diagnostico por fecha"<<endl;
+		cout<<" E) Regresar al menu principal..."<<endl<<endl;
+		cout<<" Selecione su opcion: ";
 		cin>>opcion;
 		cout<<endl;
 		
@@ -298,13 +301,13 @@ void menuHistorial(){
 			}
 			case 'E':
 			case 'e':{
-				cout<<endl<<"Regresando al menú principal..."<<endl;
+				cout<<endl<<" Regresando al menú principal..."<<endl;
 				Sleep(1500);system("cls");
 				menuPrincipal();
 				break;
 			}
 			default:{
-				cout<<"Opción invalida!!! Intente de nuevo..."<<endl;
+				cout<<RED<<" Opción invalida!!!"<<YELLOW<<" Intente de nuevo..."<<endl;
 				Sleep(1500);
 				system("cls");
 				break;
@@ -314,16 +317,16 @@ void menuHistorial(){
 }
 
 void menuDatos(){
-	
 	char opcion;
 	do{
-		cout<<"\t\t  SALUTEC - SALUD Y TECNOLOGIA"<<endl<<endl;
-		cout<<"Escoja la opcion que desea realizar en el menú:"<<endl;
-		cout<<"A) Mostrar el listado de pacientes"<<endl;
-		cout<<"B) Buscar a un paciente por nombre"<<endl;
-		cout<<"C) Buscar a un paciente por su DNI"<<endl;
-		cout<<"D) Regresar al menu principal..."<<endl<<endl;
-		cout<<"Selecione su opcion: ";
+		cout<<endl<<CYAN<<"\t\t  SALUTEC - SALUD Y TECNOLOGIA"<<endl;
+		cout<<endl<<BLUE<<"\t\t           MENU DATOS"<<endl<<endl;
+		cout<<CYAN<<" Escoja la opcion que desea realizar en el menú:"<<endl;
+		cout<<" A) Mostrar el listado de pacientes"<<endl;
+		cout<<" B) Buscar a un paciente por nombre"<<endl;
+		cout<<" C) Buscar a un paciente por su DNI"<<endl;
+		cout<<" D) Regresar al menu principal..."<<endl<<endl;
+		cout<<" Selecione su opcion: ";
 		cin>>opcion;
 		cout<<endl;
 		
@@ -348,13 +351,13 @@ void menuDatos(){
 			}
 			case 'D':
 			case 'd':{
-				cout<<endl<<"Regresando al menú principal..."<<endl;
+				cout<<endl<<" Regresando al menú principal..."<<endl;
 				Sleep(1500);system("cls");
 				menuPrincipal();
 				break;
 			}
 			default:{
-				cout<<"Opción invalida!!! Intente de nuevo..."<<endl;
+				cout<<RED<<" Opción invalida!!!"<<YELLOW<<" Intente de nuevo..."<<endl;
 				Sleep(1500);
 				system("cls");
 				break;

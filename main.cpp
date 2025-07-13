@@ -9,11 +9,10 @@
 using namespace std;
 
 int main(){
-
+	system("color F0");
 	SetConsoleOutputCP(CP_UTF8);
 	activarANSI();
 	intro();
 	menuPrincipal();
-	
 	return 0;
 }
