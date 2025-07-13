@@ -45,6 +45,36 @@ void registrarDiagnostico(Diagnostico historial[], int &total){
 	}while(!nombreValido);
 	
 	historial[total].nombrePaciente = nombre;
+	
+
+    string dni;
+    bool dniValido = false;
+
+    do {
+        cout << "Ingrese el DNI del paciente (8 digitos): ";
+        getline(cin, dni);
+
+        int contador = 0;
+        bool soloNumeros = true;
+
+        for (int i = 0; dni[i] != '\0'; i++) {
+            contador++;
+            if (dni[i] < '0' || dni[i] > '9') {
+                soloNumeros = false;
+                break;
+            }
+        }
+
+        if (contador == 8 && soloNumeros) {
+            dniValido = true;
+        } else {
+            cout << "[!] El DNI debe contener exactamente 8 digitos numericos\n";
+        }
+
+    } while (!dniValido);
+
+    historial[total].dni = dni;
+
 
 	string fecha;
     bool fechaValida = false;
