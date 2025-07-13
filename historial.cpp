@@ -106,7 +106,6 @@ void mostrarHistorial(Diagnostico historial[], int &total){
 	
 	string nombre;
     cout << "Ingrese el nombre del paciente a consultar: ";
-    cin.ignore();
     getline(cin, nombre);
 
     bool encontrado = false;
@@ -128,20 +127,19 @@ void mostrarHistorial(Diagnostico historial[], int &total){
 void modificarDiagnostico(Diagnostico historial[], int total) {
     string nombre;
     cout << "Ingrese el nombre del paciente cuyo diagnóstico desea modificar: ";
-    cin.ignore();
     getline(cin, nombre);
 
     bool encontrado = false;
 
     for (int i = 0; i < total; i++){
         if (historial[i].nombrePaciente == nombre){
-            cout << "\n--- Diagnóstico encontrado ---\n";
+            cout << "\n--- Diagnostico encontrado ---\n";
             cout << "Fecha: " << historial[i].fecha << endl;
-            cout << "Descripción: " << historial[i].descripcion << endl;
+            cout << "Descripcion: " << historial[i].descripcion << endl;
 
             cout << "\nQue desea modificar?\n";
-            cout << "a. Solo la fecha";
-            cout << "b. Solo la descripcion";
+            cout << "a. Solo la fecha\n";
+            cout << "b. Solo la descripcion\n";
             cout << "c. Ambas\n";
             cout << "Elija una opcion: ";
             char opcion;
@@ -205,3 +203,26 @@ void modificarDiagnostico(Diagnostico historial[], int total) {
         cout << "\nNo se encontro ningun diagnostico para el paciente ingresado\n";
     }
 }
+
+void buscarPorFecha(Diagnostico historial[], int total){
+    string fechaBuscar;
+    cout << "Ingrese la fecha a buscar (formato YYYY-MM-DD): ";
+    getline(cin, fechaBuscar);
+
+    bool encontrado = false;
+    cout << "\n=== Diagnosticos registrados en la fecha: " << fechaBuscar << " ===\n";
+    for (int i = 0; i < total; i++){
+        if (historial[i].fecha == fechaBuscar){
+            cout << "Paciente: " << historial[i].nombrePaciente << endl;
+            cout << "Diagostico: " << historial[i].descripcion << endl;
+            cout << "---------------------------------------\n";
+            encontrado = true;
+        }
+    }
+
+    if (!encontrado){
+        cout << "[!] No se encontraron diagnosticos para esa fecha\n";
+    }
+}
+
+
