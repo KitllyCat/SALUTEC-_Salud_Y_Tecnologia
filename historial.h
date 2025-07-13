@@ -6,6 +6,7 @@ using namespace std;
 
 struct Diagnostico {
     string nombrePaciente;
+    string dni;
     string fecha;
     string descripcion;
 };
