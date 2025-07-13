@@ -160,35 +160,42 @@ void intro(){ //funcion extremadamente innecesaria, pero igual implementada :3
 
 void menuPrincipal(){
 	char opcion;
+	bool end=false;
 	do{
-		cout<<endl<<CYAN<<"\t\t  SALUTEC - SALUD Y TECNOLOGIA"<<endl;
-		cout<<endl<<BLUE<<"\t\t        MENU PRINCIPAL"<<endl<<endl;
-		cout<<CYAN<<" Bienvenido a Salutec, una clinica donde tu salud es nuestra prioridad."<<endl;
-		cout<<" Elija la opcion que desea realizar en el programa:"<<endl;
-		cout<<" A) Acceder al registro de los pacientes"<<endl;
-		cout<<" B) Acceder al historial medico de los pacientes"<<endl;
-		cout<<" C) Acceder a la base de datos de  los pacientes"<<endl;
-		cout<<" D) Salir"<<endl<<endl;
+		cout<<CYAN<<" ╔══════════════════════════════════•●•══════════════════════════════════╗";
+		cout<<endl<<CYAN<<" ║                     SALUTEC"<<RED<<"✛ "<<CYAN<<"- SALUD Y TECNOLOGIA                     ║";
+		cout<<endl<<CYAN<<" ║                            "<<BLUE<<"MENU PRINCIPAL                             "<<CYAN<<"║"<<endl;
+		cout<<CYAN<<" ║                                                                       ║"<<endl;
+		cout<<CYAN<<" ║Bienvenido a Salutec, una clinica donde tu salud es nuestra prioridad. ║"<<endl;
+		cout<<" ║Elija la opcion que desea realizar en el programa:                     ║"<<endl;
+		cout<<" ║A) Acceder al registro de los pacientes                                ║"<<endl;
+		cout<<" ║B) Acceder al historial medico de los pacientes                        ║"<<endl;
+		cout<<" ║C) Acceder a la base de datos de  los pacientes                        ║"<<endl;
+		cout<<" ║D) Salir                                                               ║"<<endl;
+		cout<<" ╚══════════════════════════════════•●•══════════════════════════════════╝"<<endl<<endl;
 		cout<<" Selecione su opcion: ";
 		cin>>opcion;
-		cout<<endl;
 		
 		switch(opcion){
 			case 'A':
 			case 'a':{
+				cout<<endl<<GREEN<<" Cambiando de menú..."<<endl;
+				Sleep(750);system("cls");
 				system("cls");
 				menuR_Pacientes();
 				break;
 			}
 			case 'B':
 			case 'b':{
-				system("cls");
+				cout<<endl<<GREEN<<" Cambiando de menú..."<<endl;
+				Sleep(750);system("cls");
 				menuHistorial();
 				break;
 			}
 			case 'C':
 			case 'c':{
-				system("cls");
+				cout<<endl<<GREEN<<" Cambiando de menú..."<<endl;
+				Sleep(750);system("cls");
 				menuDatos();
 				break;
 			}
@@ -197,31 +204,35 @@ void menuPrincipal(){
 				system("cls");
 				cout<<endl<<BLUE<<" Gracias por su visita~!!!"<<endl;
 				Sleep(1500);system("cls");
+				end=true;
 				break;
 			}
 			default:{
-				cout<<RED<<" Opción invalida!!!"<<YELLOW<<" Intente de nuevo..."<<endl;
+				cout<<RED<<" Opción invalida!!!"<<ORANGE<<" Intente de nuevo..."<<endl;
 				Sleep(1500);
 				system("cls");
 				break;
 			}
 		}
-	}while(opcion != 'D' && opcion != 'd');
+	}while(!end);
 }
 
 void menuR_Pacientes(){
 	char opcion;
 	do{
-		cout<<endl<<CYAN<<"\t\t  SALUTEC - SALUD Y TECNOLOGIA"<<endl;
-		cout<<endl<<BLUE<<"\t\t     REGISTRO DE PACIENTES"<<endl<<endl;
-		cout<<CYAN<<" Escoja la opcion que desea realizar en el menú:"<<endl;
-		cout<<" A) Agregar paciente"<<endl;
-		cout<<" B) Eliminar paciente"<<endl;
-		cout<<" C) Actualizar paciente"<<endl;
-		cout<<" D) Regresar al menu principal..."<<endl<<endl;
+		cout<<CYAN<<" ╔══════════════════════════════════•●•══════════════════════════════════╗";
+		cout<<endl<<CYAN<<" ║                     SALUTEC"<<RED<<"✛ "<<CYAN<<"- SALUD Y TECNOLOGIA                     ║";
+		cout<<endl<<CYAN<<" ║                        "<<BLUE<<"REGISTRO DE PACIENTES                          "<<CYAN<<"║"<<endl;
+		cout<<CYAN<<" ║                                                                       ║"<<endl;
+		cout<<CYAN<<" ║Te encuentras en el menu de registro de pacientes de la clinica.       ║"<<endl;
+		cout<<" ║Elija la opcion que desea realizar en el programa:                     ║"<<endl;
+		cout<<" ║A) Agregar paciente                                                    ║"<<endl;
+		cout<<" ║B) Eliminar paciente                                                   ║"<<endl;
+		cout<<" ║C) Actualizar paciente                                                 ║"<<endl;
+		cout<<" ║D) Regresar al menu principal...                                       ║"<<endl;
+		cout<<" ╚══════════════════════════════════•●•══════════════════════════════════╝"<<endl<<endl;
 		cout<<" Selecione su opcion: ";
 		cin>>opcion;
-		cout<<endl;
 		
 		switch(opcion){
 			case 'A':
@@ -244,13 +255,13 @@ void menuR_Pacientes(){
 			}
 			case 'D':
 			case 'd':{
-				cout<<endl<<" Regresando al menú principal..."<<endl;
+				cout<<endl<<GREEN<<" Regresando al menú principal..."<<endl;
 				Sleep(1500);system("cls");
 				menuPrincipal();
 				break;
 			}
 			default:{
-				cout<<RED<<" Opción invalida!!!"<<YELLOW<<" Intente de nuevo..."<<endl;
+				cout<<RED<<" Opción invalida!!!"<<ORANGE<<" Intente de nuevo..."<<endl;
 				Sleep(1500);
 				system("cls");
 				break;
@@ -262,17 +273,21 @@ void menuR_Pacientes(){
 void menuHistorial(){
 	char opcion;
 	do{
-		cout<<endl<<CYAN<<"\t\t  SALUTEC - SALUD Y TECNOLOGIA"<<endl;
-		cout<<endl<<BLUE<<"\t\t        HISTORIAL MEDICO"<<endl<<endl;
-		cout<<CYAN<<" Escoja la opcion que desea realizar en el menú:"<<endl;
-		cout<<" A) Registrar un nuevo diagnostico"<<endl;
-		cout<<" B) Mostrar el historial diagnostico"<<endl;
-		cout<<" C) Modificar el diagnogtico de un paciente"<<endl;
-		cout<<" D) Buscar el diagnostico por fecha"<<endl;
-		cout<<" E) Regresar al menu principal..."<<endl<<endl;
+		cout<<CYAN<<" ╔══════════════════════════════════•●•══════════════════════════════════╗";
+		cout<<endl<<CYAN<<" ║                     SALUTEC"<<RED<<"✛ "<<CYAN<<"- SALUD Y TECNOLOGIA                     ║";
+		cout<<endl<<CYAN<<" ║                          "<<BLUE<<"HISTORIAL MEDICO                             "<<CYAN<<"║"<<endl;
+		cout<<CYAN<<" ║                                                                       ║"<<endl;
+		cout<<CYAN<<" ║Te encuentras en el menu deL historial medico de los pacientes.        ║"<<endl;
+		cout<<" ║Elija la opcion que desea realizar en el programa:                     ║"<<endl;
+		cout<<" ║A) Registrar un nuevo diagnostico                                      ║"<<endl;
+		cout<<" ║B) Mostrar el historial diagnostico                                    ║"<<endl;
+		cout<<" ║C) Modificar el diagnogtico de un paciente                             ║"<<endl;
+		cout<<" ║D) Buscar el diagnostico por fecha                                     ║"<<endl;
+		cout<<" ║E) Buscar el diagnostico por DNI                                       ║"<<endl;
+		cout<<" ║F) Regresar al menu principal...                                       ║"<<endl;
+		cout<<" ╚══════════════════════════════════•●•══════════════════════════════════╝"<<endl<<endl;
 		cout<<" Selecione su opcion: ";
 		cin>>opcion;
-		cout<<endl;
 		
 		switch(opcion){
 			case 'A':
@@ -301,13 +316,19 @@ void menuHistorial(){
 			}
 			case 'E':
 			case 'e':{
-				cout<<endl<<" Regresando al menú principal..."<<endl;
+				system("cls");
+				buscarPorDNI(historial, totalDiagnosticos);
+				break;
+			}
+			case 'F':
+			case 'f':{
+				cout<<endl<<GREEN<<" Regresando al menú principal..."<<endl;
 				Sleep(1500);system("cls");
 				menuPrincipal();
 				break;
 			}
 			default:{
-				cout<<RED<<" Opción invalida!!!"<<YELLOW<<" Intente de nuevo..."<<endl;
+				cout<<RED<<" Opción invalida!!!"<<ORANGE<<" Intente de nuevo..."<<endl;
 				Sleep(1500);
 				system("cls");
 				break;
@@ -319,13 +340,17 @@ void menuHistorial(){
 void menuDatos(){
 	char opcion;
 	do{
-		cout<<endl<<CYAN<<"\t\t  SALUTEC - SALUD Y TECNOLOGIA"<<endl;
-		cout<<endl<<BLUE<<"\t\t           MENU DATOS"<<endl<<endl;
-		cout<<CYAN<<" Escoja la opcion que desea realizar en el menú:"<<endl;
-		cout<<" A) Mostrar el listado de pacientes"<<endl;
-		cout<<" B) Buscar a un paciente por nombre"<<endl;
-		cout<<" C) Buscar a un paciente por su DNI"<<endl;
-		cout<<" D) Regresar al menu principal..."<<endl<<endl;
+		cout<<CYAN<<" ╔══════════════════════════════════•●•══════════════════════════════════╗";
+		cout<<endl<<CYAN<<" ║                     SALUTEC"<<RED<<"✛ "<<CYAN<<"- SALUD Y TECNOLOGIA                     ║";
+		cout<<endl<<CYAN<<" ║                           "<<BLUE<<"MENU DE DATOS                               "<<CYAN<<"║"<<endl;
+		cout<<CYAN<<" ║                                                                       ║"<<endl;
+		cout<<CYAN<<" ║Te encuentras en el menu de la base de datos de los pacientes.         ║"<<endl;
+		cout<<" ║Elija la opcion que desea realizar en el programa:                     ║"<<endl;
+		cout<<" ║A) Mostrar el listado de pacientes                                     ║"<<endl;
+		cout<<" ║B) Buscar a un paciente por nombre                                     ║"<<endl;
+		cout<<" ║C) Buscar a un paciente por su DNI                                     ║"<<endl;
+		cout<<" ║D) Regresar al menu principal...                                       ║"<<endl;
+		cout<<" ╚══════════════════════════════════•●•══════════════════════════════════╝"<<endl<<endl;
 		cout<<" Selecione su opcion: ";
 		cin>>opcion;
 		cout<<endl;
@@ -351,13 +376,13 @@ void menuDatos(){
 			}
 			case 'D':
 			case 'd':{
-				cout<<endl<<" Regresando al menú principal..."<<endl;
+				cout<<endl<<GREEN<<" Regresando al menú principal..."<<endl;
 				Sleep(1500);system("cls");
 				menuPrincipal();
 				break;
 			}
 			default:{
-				cout<<RED<<" Opción invalida!!!"<<YELLOW<<" Intente de nuevo..."<<endl;
+				cout<<RED<<" Opción invalida!!!"<<ORANGE<<" Intente de nuevo..."<<endl;
 				Sleep(1500);
 				system("cls");
 				break;
