@@ -23,6 +23,10 @@ void registrarDiagnostico(Diagnostico historial[], int &total){
 	string nombre;
     bool nombreValido = false;
     
+    cout << "\n ========================================" << endl;
+	cout << "|     REGISTRO DE NUEVO DIAGNOSTICO     |" << endl;
+	cout << " ========================================\n";
+    
     do{
 		cout << "Ingrese el nombre del paciente: ";
 	    getline(cin, nombre);
@@ -35,7 +39,7 @@ void registrarDiagnostico(Diagnostico historial[], int &total){
         }
         
         if (!nombreValido){
-            cout << "\n[X] El nombre no puede estar vacio, intentelo de nuevo\n";
+            cout << "\n[!] El nombre no puede estar vacio, intentelo de nuevo\n";
         }
         
 	}while(!nombreValido);
@@ -66,7 +70,7 @@ void registrarDiagnostico(Diagnostico historial[], int &total){
 	        fecha[9] >= '0' && fecha[9] <= '9'){
 	        fechaValida = true;
 	    } else{
-	        cout << "\n[X] Formato de fecha invalido, Use el formato: YYYY-MM-DD\n";
+	        cout << "\n[!] Formato de fecha invalido, use el formato: YYYY-MM-DD\n";
 	    }
     
 	}while (!fechaValida);
@@ -90,7 +94,7 @@ void registrarDiagnostico(Diagnostico historial[], int &total){
 	    }
 	
 	    if (!descripcionValida) {
-	        cout << "\n[X] La descripcion no puede estar vacia ni contener solo espacios, intentelo de nuevo\n";
+	        cout << "\n[!] La descripcion no puede estar vacia ni contener solo espacios, intentelo de nuevo\n";
 	    }
 	    
 	}while(!descripcionValida);
@@ -105,7 +109,12 @@ void registrarDiagnostico(Diagnostico historial[], int &total){
 void mostrarHistorial(Diagnostico historial[], int &total){
 	
 	string nombre;
-    cout << "Ingrese el nombre del paciente a consultar: ";
+	
+	cout << "\n =======================================" << endl;
+	cout << "|   CONSULTA DE HISTORIAL POR PACIENTE  |" << endl;
+	cout << " =======================================\n";
+
+    cout << "\nIngrese el nombre del paciente a consultar: ";
     getline(cin, nombre);
 
     bool encontrado = false;
@@ -120,13 +129,18 @@ void mostrarHistorial(Diagnostico historial[], int &total){
     }
 
     if (!encontrado){
-        cout << "\nNo se encontraron diagnosticos para este paciente" << endl;
+        cout << "\n[!]No se encontraron diagnosticos para este paciente" << endl;
     }
 }
 
 void modificarDiagnostico(Diagnostico historial[], int total) {
     string nombre;
-    cout << "Ingrese el nombre del paciente cuyo diagnóstico desea modificar: ";
+    
+    cout << "\n =======================================" << endl;
+	cout << "|      MODIFICACION DE DIAGNOSTICO      |" << endl;
+	cout << " =======================================\n";
+	
+    cout << "\nIngrese el nombre del paciente cuyo diagnóstico desea modificar: ";
     getline(cin, nombre);
 
     bool encontrado = false;
@@ -160,14 +174,14 @@ void modificarDiagnostico(Diagnostico historial[], int total) {
                         }
                     }
                     if (!valido){
-                        cout << "La fecha no puede estar vacia\n";
+                        cout << "[!] La fecha no puede estar vacia\n";
                     }
                     
                 } while (!valido);
 
                 historial[i].fecha = nuevaFecha;
                 if (opcion == 'a'){
-                    cout << "Fecha actualizada correctamente\n";
+                    cout << "[+] Fecha actualizada correctamente\n";
                 }
             }
 
@@ -186,12 +200,12 @@ void modificarDiagnostico(Diagnostico historial[], int total) {
                         }
                     }
                     if (!valido){
-                        cout << "La descripcion no puede estar vacia\n";
+                        cout << "[!] La descripcion no puede estar vacia\n";
                     }
                 } while (!valido);
 
                 historial[i].descripcion = nuevaDescripcion;
-                cout << "Descripcion actualizada correctamente\n";
+                cout << "[+] Descripcion actualizada correctamente\n";
             }
 
             encontrado = true;
@@ -200,20 +214,25 @@ void modificarDiagnostico(Diagnostico historial[], int total) {
     }
 
     if (!encontrado) {
-        cout << "\nNo se encontro ningun diagnostico para el paciente ingresado\n";
+        cout << "\n[!] No se encontro ningun diagnostico para el paciente ingresado\n";
     }
 }
 
 void buscarPorFecha(Diagnostico historial[], int total){
     string fechaBuscar;
-    cout << "Ingrese la fecha a buscar (formato YYYY-MM-DD): ";
+    
+    cout << "\n ========================================" << endl;
+	cout << "|   BUSQUEDA DE DIAGNOSTICOS POR FECHA   |" << endl;
+	cout << " ========================================\n";
+
+    cout << "\nIngrese la fecha a buscar (formato YYYY-MM-DD): ";
     getline(cin, fechaBuscar);
 
     bool encontrado = false;
     cout << "\n=== Diagnosticos registrados en la fecha: " << fechaBuscar << " ===\n";
     for (int i = 0; i < total; i++){
         if (historial[i].fecha == fechaBuscar){
-            cout << "Paciente: " << historial[i].nombrePaciente << endl;
+            cout << "\nPaciente: " << historial[i].nombrePaciente << endl;
             cout << "Diagostico: " << historial[i].descripcion << endl;
             cout << "---------------------------------------\n";
             encontrado = true;
