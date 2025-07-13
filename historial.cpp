@@ -35,24 +35,70 @@ void registrarDiagnostico(Diagnostico historial[], int &total){
         }
         
         if (!nombreValido){
-            cout << "El nombre no puede estar vacio, intentelo de nuevo\n";
+            cout << "\n[X] El nombre no puede estar vacio, intentelo de nuevo\n";
         }
         
 	}while(!nombreValido);
 	
 	historial[total].nombrePaciente = nombre;
 
+	string fecha;
+    bool fechaValida = false;
+    
+    do{
+	    cout << "Fecha del diagnostico: ";
+	    getline(cin, fecha);
+	    
+	    int longitud = 0;
+	    for (int i = 0; fecha[i] != '\0'; i++){
+	    	longitud++;
+		}
+		
+	    if (longitud == 10 &&
+	        fecha[4] == '-' && fecha[7] == '-' &&
+	        fecha[0] >= '0' && fecha[0] <= '9' &&
+	        fecha[1] >= '0' && fecha[1] <= '9' &&
+	        fecha[2] >= '0' && fecha[2] <= '9' &&
+	        fecha[3] >= '0' && fecha[3] <= '9' &&
+	        fecha[5] >= '0' && fecha[5] <= '9' &&
+	        fecha[6] >= '0' && fecha[6] <= '9' &&
+	        fecha[8] >= '0' && fecha[8] <= '9' &&
+	        fecha[9] >= '0' && fecha[9] <= '9'){
+	        fechaValida = true;
+	    } else{
+	        cout << "\n[X] Formato de fecha invalido, Use el formato: YYYY-MM-DD\n";
+	    }
+    
+	}while (!fechaValida);
 	
-    cout << "Fecha del diagnostico: ";
-    getline(cin, historial[total].fecha);
-    //validacion para fecha
+	historial[total].fecha = fecha;
 	
-    cout << "Descripcion del diagnostico: ";
-    getline(cin, historial[total].descripcion);
-    //validacion para diagnostico
+	
+	string descripcion;
+	bool descripcionValida = false;
+	
+	do{
+	
+	    cout << "Descripcion del diagnostico: ";
+	    getline(cin, descripcion);
+	    
+		for (int i = 0; descripcion[i] != '\0'; i++) {
+	        if (descripcion[i] != ' ') {
+	            descripcionValida = true;
+	            break;
+	        }
+	    }
+	
+	    if (!descripcionValida) {
+	        cout << "\n[X] La descripcion no puede estar vacia ni contener solo espacios, intentelo de nuevo\n";
+	    }
+	    
+	}while(!descripcionValida);
+	
+	historial[total].descripcion = descripcion;
 
     total++;
-    cout << "Diagnostico registrado\n";
+    cout << "[+] Diagnostico registrado\n";
 	
 }
 
