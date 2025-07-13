@@ -244,4 +244,5 @@ void buscarPorFecha(Diagnostico historial[], int total){
     if (!encontrado){
         cout << "[!] No se encontraron diagnosticos para esa fecha\n";
     }
+
 }
