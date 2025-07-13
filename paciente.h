@@ -3,6 +3,7 @@
 #include <iostream>
 #include <windows.h>
 #include <string>
+#include "colors.h"
 using namespace std;
 
 const int Cant=100;

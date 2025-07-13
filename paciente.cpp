@@ -3,7 +3,7 @@
 #include <string>
 #include "paciente.h"
 #include "menus.h"
-
+#include "colors.h"
 using namespace std;
 
 Paciente Registro[Cant]={
@@ -22,240 +22,189 @@ Paciente Registro[Cant]={
 int cont=10;
 
 void Agregar_Paciente(Paciente Registro[], int &cont){
-	cout << "==========================================================" << endl;
-    cout << "                REGISTRO DE PACIENTE" << endl;
-    cout << "==========================================================" << endl;
-    cout<<endl;
-    
+	cout<<CYAN<<" ╔══════════════════════════════════•●•══════════════════════════════════╗"<<endl;
+	cout<<" ║                         REGISTRO DE PACIENTE                          ║"<<endl;
+	cout<<" ╚══════════════════════════════════•●•══════════════════════════════════╝"<<endl<<endl; 
     cin.ignore();
-    
-    cout<<cont+1<<".- ";
-    bool NOvalido;
+
+    cout<<" "<<cont+1<<CYAN<<".-";
     do {
-    cout<<"Nombre: ";
-    getline(cin, Registro[cont].nombre);
-        string NO = Registro[cont].nombre;
-        NOvalido = (NO.size() > 0);
-        if (NOvalido) {
-            for (char c : NO) {
-                if (c <= 'a' && c >= 'z') {
-                    NOvalido = false;
-                    break;
-                }
-            }
+    	cout<<" Nombre: ";
+	    getline(cin, Registro[cont].nombre);
+        if (Registro[cont].nombre.empty()) {
+            cout <<RED<<" Ingrese un nombre válido!!!"<<endl<<endl;
         }
-        if (!NOvalido) {
-            cout << "Ingrese un nombre"<<endl<<endl;
-        }
-    } while (!NOvalido); 
-    
-    for (size_t i = 0; i < Registro[cont].nombre.size(); ++i) {
-        char c = Registro[cont].nombre[i];
-        if (c >= 'a' && c <= 'z') {
-            Registro[cont].nombre[i] = c - ('a' - 'A');
-        }
-    }
+    } while (Registro[cont].nombre.empty());
+
     cout<<endl;
     bool valido;
     do {
-        cout << "DNI: ";
+        cout <<CYAN<<" DNI: ";
         getline(cin, Registro[cont].DNI);
-        string dni = Registro[cont].DNI;
-        valido = (dni.size() == 8);
-        if (valido) {
-            for (char c : dni) {
-                if (c < '0' || c > '9') {
-                    valido = false;
-                    break;
-                }
+        valido = (Registro[cont].DNI.size() == 8);
+        for (char c : Registro[cont].DNI) {
+            if (!isdigit(c)) {
+                valido = false;
+                break;
             }
         }
         if (!valido) {
-            cout << "DNI inválido, debe contener 8 dígitos"<<endl<<endl;
+            cout << RED <<" DNI inválido, debe contener 8 dígitos!!!"<<endl<<endl;
         }
-    } while (!valido); 
+    } while (!valido);
+
     cout<<endl;
     bool Evalido;
     do {
-        cout << "Edad: ";
+        cout <<CYAN<<" Edad: ";
         getline(cin, Registro[cont].edad);
-        string Ed = Registro[cont].edad;
-        Evalido = (Ed.size() == 3 || Ed.size() ==2 || Ed.size() ==1);
-        if (Evalido) {
-            for (char c : Ed) {
-                if (c < '0' || c > '9') {
-                    Evalido = false;
-                    break;
-                }
+        Evalido = !Registro[cont].edad.empty();
+        for (char c : Registro[cont].edad) {
+            if (!isdigit(c)) {
+                Evalido = false;
+                break;
             }
         }
         if (!Evalido) {
-            cout << "Edad inválida"<<endl<<endl;
+            cout <<RED<<" Edad inválida!!!"<<endl<<endl;
         }
     } while (!Evalido); 
-    cout<<endl;
-    do{
-    	cout<<"Sexo (M/F): ";
-		getline(cin, Registro[cont].sexo);
-    	if(Registro[cont].sexo!="M" && Registro[cont].sexo!="F" && Registro[cont].sexo!="m" && Registro[cont].sexo!="f"){
-    	    cout<<"Error solo ingrese 'M' o 'F' "<<endl<<endl;
-    	}
-	}while(Registro[cont].sexo!="M" && Registro[cont].sexo!="F" && Registro[cont].sexo!="m" && Registro[cont].sexo!="f");
-    cout<<endl;
-    bool TS;
-	do{
-    cout << "Tipo de sangre: ";
-    getline(cin, Registro[cont].T_sangre);
-    for (size_t i = 0; i < Registro[cont].T_sangre.size(); ++i) {
-        char c = Registro[cont].T_sangre[i];
-        if (c >= 'a' && c <= 'z') {
-            Registro[cont].T_sangre[i] = c - ('a' - 'A');
-        }
-    }
-    
-    string entrada = Registro[cont].T_sangre;
 
-    if (entrada == "A+" || entrada == "A-" ||
-        entrada == "B+" || entrada == "B-" ||
-        entrada == "AB+"|| entrada == "AB-"||
-        entrada == "O+" || entrada == "O-") {
-        	TS=true;
-        	break;
+    cout<<endl;
+    do {
+    	cout<<CYAN<<" Sexo (M/F): ";
+		getline(cin, Registro[cont].sexo);
+    	if(Registro[cont].sexo != "M" && Registro[cont].sexo != "F" &&
+    	   Registro[cont].sexo != "m" && Registro[cont].sexo != "f"){
+    	    cout<<RED<<" Error!!! Solo ingrese 'M' o 'F' "<<endl<<endl;
+    	}
+	} while(Registro[cont].sexo != "M" && Registro[cont].sexo != "F" &&
+	        Registro[cont].sexo != "m" && Registro[cont].sexo != "f");
+
+    cout<<endl;
+    bool TS = false;
+	do {
+        cout <<CYAN<<" Tipo de sangre: ";
+        getline(cin, Registro[cont].T_sangre);
+        string ts = Registro[cont].T_sangre;
+        if (ts == "A+" || ts == "A-" || ts == "B+" || ts == "B-" ||
+            ts == "AB+"|| ts == "AB-"|| ts == "O+" || ts == "O-" ||
+            ts == "a+" || ts == "a-" || ts == "b+" || ts == "b-" ||
+            ts == "ab+"|| ts == "ab-"|| ts == "o+" || ts == "o-") {
+            TS = true;
+        } else {
+            cout <<RED<<" Tipo de sangre inválido!!!"<<endl<<endl;
         }
-        if (TS!=true){
-            cout << "Tipo de sangre inválido"<<endl<<endl;
-		}
-    }while(TS!=true);
+    } while (!TS);
+
     cout<<endl;
     bool Nvalido;
     do {
-        cout<<"Número: ";
+        cout<<CYAN<<" Número: ";
         getline(cin, Registro[cont].numero);
-        string N = Registro[cont].numero;
-        Nvalido = (N.size() == 9);
-        if (Nvalido) {
-            for (char c : N) {
-                if (c < '0' || c > '9') {
-                    Nvalido = false;
-                    break;
-                }
+        Nvalido = (Registro[cont].numero.size() == 9);
+        for (char c : Registro[cont].numero) {
+            if (!isdigit(c)) {
+                Nvalido = false;
+                break;
             }
         }
         if (!Nvalido) {
-            cout << "Número inválido, debe contener 9 dígitos"<<endl<<endl;
+            cout <<RED<<" Número inválido, debe contener 9 dígitos!!!"<<endl<<endl;
         }
     } while (!Nvalido); 
+
     cout<<endl;
-    bool DIvalido;
     do {
-    	cout<<"Dirección: ";
+    	cout<<CYAN<<" Dirección: ";
     	getline(cin, Registro[cont].direccion);
-        string D = Registro[cont].direccion;
-        DIvalido = (D.size() > 0);
-        if (DIvalido) {
-            for (char c : D) {
-                if (c <= 'a' && c >= 'z') {
-                    DIvalido = false;
-                    break;
-                }
-            }
+        if (Registro[cont].direccion.empty()) {
+            cout <<RED<<" Ingrese una dirección válida!!!"<<endl<<endl;
         }
-        if (!DIvalido) {
-            cout << "Ingrese una dirección"<<endl<<endl;
-        }
-    } while (!DIvalido); 
-    
-    for (size_t i = 0; i < Registro[cont].direccion.size(); ++i) {
-        char c = Registro[cont].direccion[i];
-        if (c >= 'a' && c <= 'z') {
-            Registro[cont].direccion[i] = c - ('a' - 'A');
-        }
-    }
+    } while (Registro[cont].direccion.empty());
+
 	cout<<endl;
-	
 	cont++;
-	cout<<"-------------------Paciente registrado--------------------"<<endl;
-	cout<<endl;
-	
+
+	cout<<CYAN<<" ══════════════════════════•"<<GREEN<<"Paciente registrado"<<CYAN<<"•══════════════════════════"<<endl<<endl; 
+	Sleep(1500);
+	system("cls");
 }
 
 void Eliminar_Paciente(Paciente Registro[], int &cont){
-	
-	if(cont!=0){
-	string paciente;
-	bool eliminar = false;
-	cout<<"==========================================================" << endl;
-    cout<<"                   ELIMINAR PACIENTE" << endl;
-    cout<<"==========================================================" << endl;	
-    cout<<"Ingrese el nombre del paciente: ";
+    if(cont == 0){
+        cout<<RED<<" No hay registro de pacientes!!!"<<endl;
+        Sleep(1500);
+        system("cls");
+        return;
+    }
+
+    string paciente;
+    bool eliminar = false;
+
+    cout<<CYAN<<" ╔══════════════════════════════════•●•══════════════════════════════════╗"<<endl;
+    cout<<" ║                          ELIMINAR PACIENTE                            ║"<<endl;
+    cout<<" ╚══════════════════════════════════•●•══════════════════════════════════╝"<<endl<<endl; 
+
+    cout<<CYAN<<" Ingrese el nombre del paciente para eliminar: ";
     cin.ignore();
     getline(cin, paciente);
-    
-    for (size_t i = 0; i < paciente.size(); ++i) {
-        char c = paciente[i];
-        if (c >= 'a' && c <= 'z') {
-            paciente[i] = c - ('a' - 'A');
+
+    for(int i = 0; i < cont; i++){
+        for(int j = i; j < cont - 1; j++){
+                Registro[j] = Registro[j + 1];
         }
+        cont--;
+        eliminar = true;
+        cout<<endl;
+        cout<<CYAN<<" ══════════════════════════•"<<GREEN<<"Paciente eliminado"<<CYAN<<"•══════════════════════════"<<endl; 
+        Sleep(1500);
+        system("cls");
+        break;
     }
-		
-	for(int i=0; i<cont; i++){
-		if(Registro[i].nombre == paciente){
-			for(int j=i; j<cont-1; j++){
-				Registro[j] = Registro[j+1];
-			}
-			cont--;
-			cout<<endl;
-	        cout<<"-------------------Paciente eliminado---------------------"<<endl;
-	        cout<<endl;
-			eliminar = true;
-			break;
-			}
-		}
-		if(!eliminar){
-			cout<<"El paciente no esta registrado"<<endl;
-		}
-	}else{
-		cout<<"No hay registro de pacientes"<<endl;
-	}
+
+    if(!eliminar){
+        cout<<RED<<" El paciente no está registrado!!!"<<endl;
+        Sleep(1500);
+        system("cls");
+    }
 }
-
+	
 void Actualizar_Nombre(Paciente Registro[], int &cont){  
-
+	cout<<CYAN<<" ╔══════════════════════════════════•●•══════════════════════════════════╗"<<endl;
+	cout<<" ║                          ACTUALIZAR NOMBRE                            ║"<<endl;
+	cout<<" ╚══════════════════════════════════•●•══════════════════════════════════╝"<<endl<<endl;
 	string Nnombre;
-	cout<<"Ingrese el nombre : ";
+	cout<<CYAN<<" Ingrese el nombre del paciente: ";
 	cin.ignore();
     getline(cin,Nnombre);
     cout<<endl;
     bool act =false;
     for(int i=0;i<cont;i++){
 		if(Registro[i].nombre == Nnombre){
-			cout<<"Actualizar nombre: ";
-			getline(cin, Registro[i].nombre);
-			for (size_t j = 0; j < Registro[i].nombre.size(); ++j) {
-				char c = Registro[i].nombre[j];
-				if (c >= 'a' && c <= 'z') {
-					Registro[i].nombre[j] = c - ('a' - 'A');
-				}
-			}
-			
+			cout<<CYAN<<" Actualiza el nuevo nombre: ";
+			getline(cin, Registro[i].nombre);			
 			cout<<endl;
-			cout<<"-----------Paciente actualizado------------"<<endl<<endl;
-			
+			cout<<CYAN<<" ══════════════════════════•"<<GREEN<<"Paciente actualizado"<<CYAN<<"•══════════════════════════"<<endl<<endl;
+			Sleep(1500);system("cls");
 			act = true;
 			break;
 			}
-		}	
+		}
 		
 	if(!act){
 		cout<<endl;
-		cout<<"-------------------Paciente no encontrado---------------------"<<endl;
-		cout<<endl;
+		cout<<RED<<" Paciente no encontrado!!!"<<endl;
+		Sleep(1500);system("cls");
 	    }
 }
 
 void Actualizar_Edad(Paciente Registro[], int &cont){  
+	cout<<CYAN<<" ╔══════════════════════════════════•●•══════════════════════════════════╗"<<endl;
+	cout<<" ║                          ACTUALIZAR EDAD                              ║"<<endl;
+	cout<<" ╚══════════════════════════════════•●•══════════════════════════════════╝"<<endl<<endl;
 	string Nnombre;
-	cout<<"Ingrese el nombre : ";
+	cout<<CYAN<<" Ingrese el nombre del paciente: ";
 	cin.ignore();
     getline(cin,Nnombre);
     cout<<endl;
@@ -263,7 +212,7 @@ void Actualizar_Edad(Paciente Registro[], int &cont){
     for(int i=0;i<cont;i++){
 		if(Registro[i].nombre == Nnombre){
 			bool Evalido;
-			do{cout<<"Actualizar edad: ";
+			do{cout<<CYAN<<" Actualiza la nueva edad: ";
 			getline(cin, Registro[i].edad);
 			string Ed = Registro[i].edad;
 			Evalido = (Ed.size() == 3 || Ed.size() ==2 || Ed.size() ==1);
@@ -277,41 +226,39 @@ void Actualizar_Edad(Paciente Registro[], int &cont){
         }
         if (!Evalido) {
         	cout<<endl;
-            cout << "Edad inválida"<<endl<<endl;
+            cout <<RED<< " Edad inválida!!!"<<endl<<endl;
+            Sleep(1500);system("cls");
         }
     } while (!Evalido); 
 			cout<<endl;
-			cout<<"-----------Dato actualizado------------"<<endl<<endl;
-			
+			cout<<CYAN<<" ════════════════════════════•"<<GREEN<<"Dato actualizado"<<CYAN<<"•════════════════════════════"<<endl<<endl;
+			Sleep(1500);system("cls");
 			act = true;
 			break;
 			}
-		}		
+	}		
 	if(!act){
 		cout<<endl;
-		cout<<"-------------------Paciente no encontrado---------------------"<<endl;
-		cout<<endl;
+		cout<<RED<<" Paciente no encontrado!!!"<<endl;
+		Sleep(1500);system("cls");
 	    }
 }
 
 void Actualizar_Numero(Paciente Registro[], int &cont){  
+	cout<<CYAN<<" ╔══════════════════════════════════•●•══════════════════════════════════╗"<<endl;
+	cout<<" ║                          ACTUALIZAR NUMERO                            ║"<<endl;
+	cout<<" ╚══════════════════════════════════•●•══════════════════════════════════╝"<<endl<<endl;
 	string Nnombre;
-	cout<<"Ingrese el nombre : ";
+	cout<<CYAN<<" Ingrese el nombre del paciente: ";
 	cin.ignore();
     getline(cin,Nnombre);
-    for (size_t i = 0; i < Nnombre.size(); ++i) {
-        char c = Nnombre[i];
-        if (c >= 'a' && c <= 'z') {
-            Nnombre[i] = c - ('a' - 'A');
-        }
-    }
     cout<<endl;
     bool act =false;
     for(int i=0;i<cont;i++){
 		if(Registro[i].nombre == Nnombre){
 			bool Nvalido;
 			do {
-				cout<<"Actualizar número: ";
+				cout<<CYAN<<" Actualiza el nuevo número: ";
 				getline(cin, Registro[i].numero);
 				string N = Registro[i].numero;
 				Nvalido = (N.size() == 9);
@@ -325,51 +272,50 @@ void Actualizar_Numero(Paciente Registro[], int &cont){
         }
         if (!Nvalido) {
         	cout<<endl;
-            cout << "Número inválido, debe contener 9 dígitos"<<endl<<endl;
+            cout << RED<<" Número inválido, debe contener 9 dígitos!!!"<<endl<<endl;
+            Sleep(1500);system("cls");
         }
     } while (!Nvalido); 
 		cout<<endl;
-		cout<<"-----------Dato actualizado------------"<<endl<<endl;
-			
+		cout<<CYAN<<" ════════════════════════════•"<<GREEN<<"Dato actualizado"<<CYAN<<"•════════════════════════════"<<endl<<endl;
+		Sleep(1500);system("cls");
 		act = true;
 		break;
 			}
 		}		
 	if(!act){
 		cout<<endl;
-		cout<<"-------------------Paciente no encontrado---------------------"<<endl;
+		cout<<RED<<" Paciente no encontrado!!!"<<endl;
+		Sleep(1500);system("cls");
 		cout<<endl;
 	    }
 }
 
-void Actualizar_Direccion(Paciente Registro[], int &cont){  
+void Actualizar_Direccion(Paciente Registro[], int &cont){ 
+	cout<<CYAN<<" ╔══════════════════════════════════•●•══════════════════════════════════╗"<<endl;
+	cout<<" ║                         ACTUALIZAR DIRECCION                          ║"<<endl;
+	cout<<" ╚══════════════════════════════════•●•══════════════════════════════════╝"<<endl<<endl;
 	string Nnombre;
-	cout<<"Ingrese el nombre : ";
+	cout<<CYAN<<" Ingrese el nombre del paciente: ";
 	cin.ignore();
     getline(cin,Nnombre);
     cout<<endl;
     bool act =false;
     for(int i=0;i<cont;i++){
 		if(Registro[i].nombre == Nnombre){
-			cout<<"Actualizar dirección: ";
+			cout<<CYAN<<" Actualiza la nueva dirección: ";
 			getline(cin, Registro[i].direccion);
-			for (size_t j = 0; j < Registro[i].direccion.size(); ++j) {
-				char c = Registro[i].direccion[j];
-				if (c >= 'a' && c <= 'z') {
-					Registro[i].direccion[j] = c - ('a' - 'A');
-				}
-			}
-			
 			cout<<endl;
-			cout<<"-----------Dato actualizado------------"<<endl<<endl;
-			
+			cout<<CYAN<<" ════════════════════════════•"<<GREEN<<"Dato actualizado"<<CYAN<<"•════════════════════════════"<<endl<<endl;
+			Sleep(1500);system("cls");
 			act = true;
 			break;
 			}
 		}		
 	if(!act){
 		cout<<endl;
-		cout<<"-------------------Paciente no encontrado---------------------"<<endl;
+		cout<<RED<<" Paciente no encontrado!!!"<<endl;
+		Sleep(1500);system("cls");
 		cout<<endl;
 	    }
 }
@@ -377,61 +323,68 @@ void Actualizar_Direccion(Paciente Registro[], int &cont){
 void Actualizar_Paciente(Paciente Registro[], int &cont){
 	
 	if(cont!=0){
-	
-	cout<<"==========================================================" << endl;
-    cout<<"                   ACTUALIZAR PACIENTE" << endl;
-    cout<<"==========================================================" << endl;	
-    
 		char dato;
 			do{
-			cout<<endl;	
-			cout<<"------------DATOS A ACTUALIZAR----------"<<endl<<endl;
-			cout << "a)Nombre" << endl;
-			cout << "b)Edad" <<endl;
-            cout << "c)Número de celular" <<endl;
-            cout << "d)Dirección"<<endl;
-            cout << "s)Salir"<<endl;
-            cout <<"Alternativa: ";
+			cout<<CYAN<<" ╔══════════════════════════════════•●•══════════════════════════════════╗"<<endl;
+			cout<<" ║                        ACTUALIZAR UN PACIENTE                         ║"<<endl;
+			cout<<" ╚══════════════════════════════════•●•══════════════════════════════════╝"<<endl;
+			cout<<CYAN<<" ══════════════════════════•"<<GREEN<<"DATOS A ACTUALIZAR"<<CYAN<<"•══════════════════════════"<<endl<<endl;
+			cout << " A)Nombre" << endl;
+			cout << " B)Edad" <<endl;
+            cout << " C)Número de celular" <<endl;
+            cout << " D)Dirección"<<endl;
+            cout << " S)Salir"<<endl;
+            cout << " Selecione su opcion: ";
             cin >> dato;
             cout <<endl;
 		
 		switch (dato) {
-			case 'a':{
+			case 'a':
+			case 'A':{
+				system("cls");
 				Actualizar_Nombre(Registro, cont);
 				break;
 			}
 				
-			case 'b':{
+			case 'b':
+			case 'B':{
+				system("cls");
 				Actualizar_Edad(Registro, cont);
 				break;
 			}
 			
-			case 'c':{
+			case 'c':
+			case 'C':{
+				system("cls");
 				Actualizar_Numero(Registro, cont);
 				break;
 			}
 				
-			case 'd':{
+			case 'd':
+			case 'D':{
+				system("cls");
 				Actualizar_Direccion(Registro, cont);
 				break;
 			}
 			
-			case 's': {
-				cout<<"Regresando al menu principal..."<<endl<<endl;
-				menuR_Pacientes();	
+			case 's':
+			case 'S':{
+				cout<<endl<<GREEN<<" Regresando al menú anterior..."<<endl;
+				Sleep(1500);system("cls");
 				break;
 			}
 			
 			default:{
-				cout<<endl;
-				cout<<"-------Alternativa invalida--------";
-				cout<<endl;
+				cout<<RED<<" Opción invalida!!!"<<ORANGE<<" Intente de nuevo..."<<endl;
+				Sleep(1500);
+				system("cls");
 				break;
 			}
 		}
 	}while(dato != 's');
 	}else{
-		cout<<"No hay registro de pacientes"<<endl;
+		cout<<RED<<"No hay registro de pacientes!!!"<<endl;
 		cout<<endl;
+		Sleep(1500);system("cls");
 	}
 }
