@@ -138,38 +138,47 @@ void Eliminar_Paciente(Paciente Registro[], int &cont){
         system("cls");
         return;
     }
-
-    string paciente;
-    bool eliminar = false;
-
+    string pacienteEliminado; 
     cout<<CYAN<<" ╔══════════════════════════════════•●•══════════════════════════════════╗"<<endl;
     cout<<" ║                          ELIMINAR PACIENTE                            ║"<<endl;
     cout<<" ╚══════════════════════════════════•●•══════════════════════════════════╝"<<endl<<endl; 
-
     cout<<CYAN<<" Ingrese el nombre del paciente para eliminar: ";
     cin.ignore();
-    getline(cin, paciente);
+    getline(cin, pacienteEliminado);
+    bool encontrado = false;
 
-    for(int i = 0; i < cont; i++){
-        for(int j = i; j < cont - 1; j++){
-                Registro[j] = Registro[j + 1];
+    for (int i = 0; i < cont; i++) {
+        if (Registro[i].nombre == pacienteEliminado) {
+            encontrado = true;
+
+            cout << endl << GREEN << " Paciente encontrado:" << endl;
+            showPatient(Registro[i]);
+
+            char confirm;
+            cout << GREEN << " ¿Está seguro que desea eliminar este paciente? (S/N): ";
+            cin >> confirm;
+            if (confirm == 'S' || confirm == 's') {
+                for (int j = i; j < cont - 1; j++) {
+                    Registro[j] = Registro[j + 1];
+                }
+                cont--;
+                cout << GREEN << " Paciente eliminado correctamente!!!" << endl;
+            } else {
+                cout << RED << " Operación cancelada..." << endl;
+            }
+            break;
         }
-        cont--;
-        eliminar = true;
-        cout<<endl;
-        cout<<CYAN<<" ══════════════════════════•"<<GREEN<<"Paciente eliminado"<<CYAN<<"•══════════════════════════"<<endl; 
-        Sleep(1500);
-        system("cls");
-        break;
     }
 
-    if(!eliminar){
-        cout<<RED<<" El paciente no está registrado!!!"<<endl;
-        Sleep(1500);
-        system("cls");
+    if (!encontrado) {
+        cout << RED << " No se encontró ningún paciente con ese nombre." << endl;
     }
+
+    cout << endl << " Presione enter para regresar al menú...";
+    cin.ignore(); cin.get();
+    system("cls");
 }
-	
+
 void Actualizar_Nombre(Paciente Registro[], int &cont){  
 	cout<<CYAN<<" ╔══════════════════════════════════•●•══════════════════════════════════╗"<<endl;
 	cout<<" ║                          ACTUALIZAR NOMBRE                            ║"<<endl;
