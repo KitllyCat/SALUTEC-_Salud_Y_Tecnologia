@@ -12,7 +12,7 @@ int main(){
 	system("color F0"); //establecer la consola a todo el fondo blanco
 	SetConsoleOutputCP(CP_UTF8); //para ascii utf8
 	activarANSI();//activacion de los colores para consola win10/11
-	//intro();
+	intro();
 	menuPrincipal();
 	cout<<endl<<CYAN<<" SALUTEC"<<RED<<"✛ "<<CYAN<<"- SALUD Y TECNOLOGIA"<<endl;
 	return 0;
