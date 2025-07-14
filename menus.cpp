@@ -159,11 +159,10 @@ void intro(){ //funcion extremadamente innecesaria, pero igual implementada :3
 }
 
 void menuPrincipal(){
-	char opcion;
 	bool end=false;
 	do{
 		cout<<CYAN<<" ╔══════════════════════════════════•●•══════════════════════════════════╗";
-		cout<<endl<<CYAN<<" ║                     SALUTEC"<<RED<<"✛ "<<CYAN<<"- SALUD Y TECNOLOGIA                     ║";
+		cout<<endl<<CYAN<<" ║                     SALUTEC"<<RED<<"+ "<<CYAN<<"- SALUD Y TECNOLOGIA                     ║";
 		cout<<endl<<CYAN<<" ║                            "<<BLUE<<"MENU PRINCIPAL                             "<<CYAN<<"║"<<endl;
 		cout<<CYAN<<" ║                                                                       ║"<<endl;
 		cout<<CYAN<<" ║Bienvenido a Salutec, una clinica donde tu salud es nuestra prioridad. ║"<<endl;
@@ -174,7 +173,10 @@ void menuPrincipal(){
 		cout<<" ║D) Salir                                                               ║"<<endl;
 		cout<<" ╚══════════════════════════════════•●•══════════════════════════════════╝"<<endl<<endl;
 		cout<<" Selecione su opcion: ";
-		cin>>opcion;
+		char opcion;
+		cin >> opcion;
+		cin.clear();
+		cin.ignore(1000, '\n');
 		
 		switch(opcion){
 			case 'A':
@@ -218,10 +220,10 @@ void menuPrincipal(){
 }
 
 void menuR_Pacientes(){
-	char opcion;
+	bool salir=false;
 	do{
 		cout<<CYAN<<" ╔══════════════════════════════════•●•══════════════════════════════════╗";
-		cout<<endl<<CYAN<<" ║                     SALUTEC"<<RED<<"✛ "<<CYAN<<"- SALUD Y TECNOLOGIA                     ║";
+		cout<<endl<<CYAN<<" ║                     SALUTEC"<<RED<<"+ "<<CYAN<<"- SALUD Y TECNOLOGIA                     ║";
 		cout<<endl<<CYAN<<" ║                        "<<BLUE<<"REGISTRO DE PACIENTES                          "<<CYAN<<"║"<<endl;
 		cout<<CYAN<<" ║                                                                       ║"<<endl;
 		cout<<CYAN<<" ║Te encuentras en el menu de registro de pacientes de la clinica.       ║"<<endl;
@@ -232,7 +234,10 @@ void menuR_Pacientes(){
 		cout<<" ║D) Regresar al menu principal...                                       ║"<<endl;
 		cout<<" ╚══════════════════════════════════•●•══════════════════════════════════╝"<<endl<<endl;
 		cout<<" Selecione su opcion: ";
-		cin>>opcion;
+		char opcion;
+		cin >> opcion;
+		cin.clear();
+		cin.ignore(1000, '\n');
 		
 		switch(opcion){
 			case 'A':
@@ -255,10 +260,10 @@ void menuR_Pacientes(){
 			}
 			case 'D':
 			case 'd':{
+				salir=true;
 				cout<<endl<<GREEN<<" Regresando al menú principal..."<<endl;
 				Sleep(1500);system("cls");
-				menuPrincipal();
-				break;
+				return;
 			}
 			default:{
 				cout<<RED<<" Opción invalida!!!"<<ORANGE<<" Intente de nuevo..."<<endl;
@@ -267,14 +272,14 @@ void menuR_Pacientes(){
 				break;
 			}
 		}
-	}while(opcion!=5);
+	}while(!salir);
 }
 
 void menuHistorial(){
-	char opcion;
+	bool salir=false;
 	do{
 		cout<<CYAN<<" ╔══════════════════════════════════•●•══════════════════════════════════╗";
-		cout<<endl<<CYAN<<" ║                     SALUTEC"<<RED<<"✛ "<<CYAN<<"- SALUD Y TECNOLOGIA                     ║";
+		cout<<endl<<CYAN<<" ║                     SALUTEC"<<RED<<"+ "<<CYAN<<"- SALUD Y TECNOLOGIA                     ║";
 		cout<<endl<<CYAN<<" ║                          "<<BLUE<<"HISTORIAL MEDICO                             "<<CYAN<<"║"<<endl;
 		cout<<CYAN<<" ║                                                                       ║"<<endl;
 		cout<<CYAN<<" ║Te encuentras en el menu deL historial medico de los pacientes.        ║"<<endl;
@@ -287,7 +292,10 @@ void menuHistorial(){
 		cout<<" ║F) Regresar al menu principal...                                       ║"<<endl;
 		cout<<" ╚══════════════════════════════════•●•══════════════════════════════════╝"<<endl<<endl;
 		cout<<" Selecione su opcion: ";
-		cin>>opcion;
+		char opcion;
+		cin >> opcion;
+		cin.clear();
+		cin.ignore(1000, '\n');
 		
 		switch(opcion){
 			case 'A':
@@ -322,10 +330,10 @@ void menuHistorial(){
 			}
 			case 'F':
 			case 'f':{
+				salir=true;
 				cout<<endl<<GREEN<<" Regresando al menú principal..."<<endl;
 				Sleep(1500);system("cls");
-				menuPrincipal();
-				break;
+				return;
 			}
 			default:{
 				cout<<RED<<" Opción invalida!!!"<<ORANGE<<" Intente de nuevo..."<<endl;
@@ -334,14 +342,14 @@ void menuHistorial(){
 				break;
 			}
 		}
-	}while(opcion!=5);
+	}while(!salir);
 }
 
 void menuDatos(){
-	char opcion;
+	bool salir=false;
 	do{
 		cout<<CYAN<<" ╔══════════════════════════════════•●•══════════════════════════════════╗";
-		cout<<endl<<CYAN<<" ║                     SALUTEC"<<RED<<"✛ "<<CYAN<<"- SALUD Y TECNOLOGIA                     ║";
+		cout<<endl<<CYAN<<" ║                     SALUTEC"<<RED<<"+ "<<CYAN<<"- SALUD Y TECNOLOGIA                     ║";
 		cout<<endl<<CYAN<<" ║                           "<<BLUE<<"MENU DE DATOS                               "<<CYAN<<"║"<<endl;
 		cout<<CYAN<<" ║                                                                       ║"<<endl;
 		cout<<CYAN<<" ║Te encuentras en el menu de la base de datos de los pacientes.         ║"<<endl;
@@ -352,9 +360,11 @@ void menuDatos(){
 		cout<<" ║D) Regresar al menu principal...                                       ║"<<endl;
 		cout<<" ╚══════════════════════════════════•●•══════════════════════════════════╝"<<endl<<endl;
 		cout<<" Selecione su opcion: ";
-		cin>>opcion;
-		cout<<endl;
-		
+		char opcion;
+		cin >> opcion;
+		cin.clear();
+		cin.ignore(1000, '\n');
+	
 		switch(opcion){
 			case 'A':
 			case 'a':{
@@ -376,10 +386,10 @@ void menuDatos(){
 			}
 			case 'D':
 			case 'd':{
+				salir=true;
 				cout<<endl<<GREEN<<" Regresando al menú principal..."<<endl;
 				Sleep(1500);system("cls");
-				menuPrincipal();
-				break;
+				return;
 			}
 			default:{
 				cout<<RED<<" Opción invalida!!!"<<ORANGE<<" Intente de nuevo..."<<endl;
@@ -388,5 +398,5 @@ void menuDatos(){
 				break;
 			}
 		}
-	}while(opcion!=5);
+	}while(!salir);
 }
