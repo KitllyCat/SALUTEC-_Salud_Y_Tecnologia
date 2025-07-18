@@ -19,17 +19,17 @@ void showPatient(Paciente pacient){
 }
 
 void listPatients(Paciente* pacient, int count) {
-    if (cont != 0){
-        cout<<CYAN<<" ╔══════════════════════════════════•●•══════════════════════════════════╗"<<endl;
-		cout<<" ║                  LISTADO GENERAL DE LOS PACIENTES                     ║"<<endl;
-		cout<<" ╚══════════════════════════════════•●•══════════════════════════════════╝"<<endl<<endl;
-        for (int i = 0; i < cont; i++) {
-            cout << BLUE<<" Paciente N°" << i + 1 << ":" << endl;
-            showPatient(pacient[i]);
-        }
-    }else {
-        cout << RED <<" ERROR!!! - Ni un paciente registrado." << endl;
+    if (count == 0){
+        cout << RED << " No hay pacientes registrados!!!" << endl;
         Sleep(1500); system("cls");
+        return;
+    }
+    cout<<CYAN<<" ╔══════════════════════════════════"<<BLUE<<"●•●"<<CYAN<<"══════════════════════════════════╗"<<endl;
+	cout<<" ║                  LISTADO GENERAL DE LOS PACIENTES                     ║"<<endl;
+	cout<<" ╚══════════════════════════════════"<<BLUE<<"●•●"<<CYAN<<"══════════════════════════════════╝"<<endl<<endl;
+    for (int i = 0; i < cont; i++) {
+        cout << BLUE<<" Paciente N°" << i + 1 << ":" << endl;
+        showPatient(pacient[i]);
     }
     cout << endl;
     cout<<" Presione enter para regresar al menú...";
@@ -37,11 +37,45 @@ void listPatients(Paciente* pacient, int count) {
 	system("cls");
 }
 
+void listPatientsByAge(Paciente* pacient, int count){
+	if (count == 0){
+        cout << RED << " No hay pacientes registrados!!!" << endl;
+        Sleep(1500); system("cls");
+        return;
+    }	
+    cout<<CYAN<<" ╔══════════════════════════════════"<<BLUE<<"●•●"<<CYAN<<"══════════════════════════════════╗"<<endl;
+	cout<<" ║              LISTADO GENERAL DE LOS PACIENTES POR EDAD                ║"<<endl;
+	cout<<" ╚══════════════════════════════════"<<BLUE<<"●•●"<<CYAN<<"══════════════════════════════════╝"<<endl<<endl;
+	Paciente alt[Cant];
+    for (int i = 0; i < count; i++) {
+        alt[i] = pacient[i];
+    }
+    for (int i = 0; i < count - 1; i++) {
+        for (int j = 0; j < count - i - 1; j++) {
+            int age1 = stoi(alt[j].edad);
+            int age2 = stoi(alt[j + 1].edad);
+            if (age1 > age2) {
+                swap(alt[j], alt[j + 1]);
+            }
+        }
+    }
+    
+	for (int i = 0; i < count; i++) {
+        cout << BLUE << " Paciente N°" << i + 1 << ":" << endl;
+        showPatient(alt[i]);
+    }
+	
+	cout << endl;
+    cout<<" Presione enter para regresar al menú...";
+	cin.ignore(); cin.get();
+	system("cls");
+}
+
 void searchPatientByName(Paciente pacient[], int &count){
     string nombre;
-    cout<<CYAN<<" ╔══════════════════════════════════•●•══════════════════════════════════╗"<<endl;
+    cout<<CYAN<<" ╔══════════════════════════════════"<<BLUE<<"●•●"<<CYAN<<"══════════════════════════════════╗"<<endl;
 	cout<<" ║                          BUSCAR POR NOMBRE                            ║"<<endl;
-	cout<<" ╚══════════════════════════════════•●•══════════════════════════════════╝"<<endl<<endl;
+	cout<<" ╚══════════════════════════════════"<<BLUE<<"●•●"<<CYAN<<"══════════════════════════════════╝"<<endl<<endl;
     cout << CYAN<<" Ingrese el nombre que desea buscar:" ;
     cin.ignore();
     getline(cin, nombre);
@@ -64,9 +98,9 @@ void searchPatientByName(Paciente pacient[], int &count){
 }
 
 void searchPatientByDNI(Paciente pacient[], int &count){
-	cout<<CYAN<<" ╔══════════════════════════════════•●•══════════════════════════════════╗"<<endl;
+	cout<<CYAN<<" ╔══════════════════════════════════"<<BLUE<<"●•●"<<CYAN<<"══════════════════════════════════╗"<<endl;
 	cout<<" ║                           BUSCAR POR DNI                              ║"<<endl;
-	cout<<" ╚══════════════════════════════════•●•══════════════════════════════════╝"<<endl<<endl;
+	cout<<" ╚══════════════════════════════════"<<BLUE<<"●•●"<<CYAN<<"══════════════════════════════════╝"<<endl<<endl;
     string dni;
     cout << CYAN<<" Ingrese el DNI que desea buscar:" ;
     cin >> dni;
