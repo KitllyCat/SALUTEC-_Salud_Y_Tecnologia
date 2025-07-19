@@ -181,7 +181,7 @@ void menuPrincipal(){
 		switch(opcion){
 			case 'A':
 			case 'a':{
-				cout<<endl<<GREEN<<" Cambiando de menú..."<<endl;
+				cout<<endl<<GREEN<<" Cambiando al menú registros..."<<endl;
 				Sleep(750);system("cls");
 				system("cls");
 				menuR_Pacientes();
@@ -189,14 +189,14 @@ void menuPrincipal(){
 			}
 			case 'B':
 			case 'b':{
-				cout<<endl<<GREEN<<" Cambiando de menú..."<<endl;
+				cout<<endl<<GREEN<<" Cambiando al menú de historial..."<<endl;
 				Sleep(750);system("cls");
 				menuHistorial();
 				break;
 			}
 			case 'C':
 			case 'c':{
-				cout<<endl<<GREEN<<" Cambiando de menú..."<<endl;
+				cout<<endl<<GREEN<<" Cambiando al menú de datos..."<<endl;
 				Sleep(750);system("cls");
 				menuDatos();
 				break;
@@ -355,9 +355,10 @@ void menuDatos(){
 		cout<<YELLOW<<" ║"<<CYAN<<"Te encuentras en el menu de la base de datos de los pacientes.         "<<YELLOW<<"║"<<endl;
 		cout<<YELLOW<<" ║"<<CYAN<<"Elija la opcion que desea realizar en el programa:                     "<<YELLOW<<"║"<<endl;
 		cout<<YELLOW<<" ║"<<CYAN<<"A) Mostrar el listado de pacientes                                     "<<YELLOW<<"║"<<endl;
-		cout<<YELLOW<<" ║"<<CYAN<<"B) Buscar a un paciente por nombre                                     "<<YELLOW<<"║"<<endl;
-		cout<<YELLOW<<" ║"<<CYAN<<"C) Buscar a un paciente por su DNI                                     "<<YELLOW<<"║"<<endl;
-		cout<<YELLOW<<" ║"<<CYAN<<"D) Regresar al menu principal...                                       "<<YELLOW<<"║"<<endl;
+		cout<<YELLOW<<" ║"<<CYAN<<"B) Mostrar el listado de pacientes por edad                            "<<YELLOW<<"║"<<endl;
+		cout<<YELLOW<<" ║"<<CYAN<<"C) Buscar a un paciente por nombre                                     "<<YELLOW<<"║"<<endl;
+		cout<<YELLOW<<" ║"<<CYAN<<"D) Buscar a un paciente por su DNI                                     "<<YELLOW<<"║"<<endl;
+		cout<<YELLOW<<" ║"<<CYAN<<"E) Regresar al menu principal...                                       "<<YELLOW<<"║"<<endl;
 		cout<<YELLOW<<" ╚══════════════════════════════════"<<BLUE<<"●•●"<<YELLOW<<"══════════════════════════════════╝"<<endl<<endl;
 		cout<<CYAN<<" Selecione su opcion: ";
 		char opcion;
@@ -375,17 +376,23 @@ void menuDatos(){
 			case 'B':
 			case 'b':{
 				system("cls");
-				searchPatientByName(Registro, cont);
+				listPatientsByAge(Registro, cont);
 				break;
 			}
 			case 'C':
 			case 'c':{
 				system("cls");
-				searchPatientByDNI(Registro, cont);
+				searchPatientByName(Registro, cont);
 				break;
 			}
 			case 'D':
 			case 'd':{
+				system("cls");
+				searchPatientByDNI(Registro, cont);
+				break;
+			}
+			case 'e':
+			case 'E':{
 				salir=true;
 				cout<<endl<<GREEN<<" Regresando al menú principal..."<<endl;
 				Sleep(1500);system("cls");
