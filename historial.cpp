@@ -21,6 +21,15 @@ Diagnostico historial[100] = {
 
 int totalDiagnosticos = 10;
 
+bool existePaciente(const string& nombre, const string& dni) {
+    for (int i = 0; i < cont; i++) {
+        if (Registro[i].nombre == nombre && Registro[i].DNI == dni) {
+            return true;
+        }
+    }
+    return false;
+}
+
 void registrarDiagnostico(Diagnostico historial[], int &total){
 	
 	string nombre;
@@ -69,9 +78,14 @@ void registrarDiagnostico(Diagnostico historial[], int &total){
         }
 
     } while (!dniValido);
-
+    
+	if (!existePaciente(nombre, dni)) {
+	    cout << RED << " El paciente no está registrado!!!" << ORANGE << " Regístrelo antes de añadir un diagnóstico." << endl;
+	    Sleep(2000); system("cls");
+	    return;
+	}
+	
     historial[total].dni = dni;
-
 
 	string fecha;
     bool fechaValida = false;
@@ -156,9 +170,9 @@ void mostrarHistorial(Diagnostico historial[], int &total){
     }
     if (!encontrado){
         cout << RED<<" No se encontraron diagnosticos para este paciente!!!" << endl<<endl;
-        Sleep(1500); system("cls");
+        Sleep(1500); system("cls"); return;
     }
-	cout<<" Presione enter para regresar al menú... ";
+	cout<<CYAN<<" Presione enter para regresar al menú... ";
 	cin.get(); system("cls");
 }
 
@@ -179,15 +193,17 @@ void modificarDiagnostico(Diagnostico historial[], int total) {
             bool continuar = true;
             while (continuar) {
                 system("cls");
-                cout << CYAN << " ╔══════════════════════════════════"<<BLUE<<"●•●"<<CYAN<<"══════════════════════════════════╗" << endl;
-                cout << " ║                   DIAGNOSTICO ACTUAL DEL PACIENTE                     ║" << endl;
-                cout << " ╚══════════════════════════════════"<<BLUE<<"●•●"<<CYAN<<"══════════════════════════════════╝" << endl << endl;
-				cout << CYAN<<" ╔═══════════════════════════"<<BLUE<<"●•●"<<CYAN<<"═══════════════════════════╗"<<endl;
-                cout << CYAN << "  Nombre: " << historial[i].nombrePaciente << endl;
-                cout << "  DNI: " << historial[i].dni << endl;
-                cout << "  Fecha: " << historial[i].fecha << endl;
-                cout << "  Descripción: " << historial[i].descripcion << endl;
-                cout << CYAN<<" ╚═══════════════════════════"<<BLUE<<"●•●"<<CYAN<<"═══════════════════════════╝"<<endl<<endl;
+                for (int i = 0; i < total; i++){
+			        if (historial[i].nombrePaciente == nombre){
+			        	cout << CYAN<<" ╔═══════════════════════════"<<BLUE<<"●•●"<<CYAN<<"═══════════════════════════╗"<<endl;
+			    		cout << CYAN<<"  Historial medico de " <<BLUE<< nombre << CYAN<<" " << endl;
+						cout << CYAN<<"  DNI: " << historial[i].dni << endl;
+			            cout << CYAN<<"  Fecha: " << historial[i].fecha << endl;
+			            cout << CYAN<<"  Diagnostico: " << historial[i].descripcion << endl;
+			            cout << CYAN<<" ╚═══════════════════════════"<<BLUE<<"●•●"<<CYAN<<"═══════════════════════════╝"<<endl<<endl;
+			            encontrado = true;
+			        }
+			    }
                 cout << CYAN << " ¿Qué desea modificar?" << endl;
                 cout << " A) Fecha del diagnóstico" << endl;
                 cout << " B) Descripción" << endl;

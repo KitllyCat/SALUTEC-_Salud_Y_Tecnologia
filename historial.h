@@ -3,6 +3,7 @@
 #include <iostream>
 #include <windows.h>
 #include <string>
+#include "paciente.h"
 using namespace std;
 
 struct Diagnostico {
@@ -11,7 +12,7 @@ struct Diagnostico {
     string fecha;
     string descripcion;
 };
-
+bool existePaciente(const string& nombre, const string& dni);
 void registrarDiagnostico(Diagnostico historial[], int &total);
 void mostrarHistorial(Diagnostico historial[], int &total);
 void modificarDiagnostico(Diagnostico historial[], int total);
