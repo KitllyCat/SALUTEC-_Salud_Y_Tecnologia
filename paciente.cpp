@@ -22,9 +22,9 @@ Paciente Registro[Cant]={
 int cont=10;
 
 void Agregar_Paciente(Paciente Registro[], int &cont){
-	cout<<CYAN<<" ╔══════════════════════════════════•●•══════════════════════════════════╗"<<endl;
+	cout<<CYAN<<" ╔══════════════════════════════════"<<BLUE<<"●•●"<<CYAN<<"══════════════════════════════════╗"<<endl;
 	cout<<" ║                         REGISTRO DE PACIENTE                          ║"<<endl;
-	cout<<" ╚══════════════════════════════════•●•══════════════════════════════════╝"<<endl<<endl; 
+	cout<<" ╚══════════════════════════════════"<<BLUE<<"●•●"<<CYAN<<"══════════════════════════════════╝"<<endl<<endl; 
 
     cout<<" "<<cont+1<<CYAN<<".-";
     do {
@@ -138,9 +138,9 @@ void Eliminar_Paciente(Paciente Registro[], int &cont){
         return;
     }
     string pacienteEliminado; 
-    cout<<CYAN<<" ╔══════════════════════════════════•●•══════════════════════════════════╗"<<endl;
+    cout<<CYAN<<" ╔══════════════════════════════════"<<BLUE<<"●•●"<<CYAN<<"══════════════════════════════════╗"<<endl;
     cout<<" ║                          ELIMINAR PACIENTE                            ║"<<endl;
-    cout<<" ╚══════════════════════════════════•●•══════════════════════════════════╝"<<endl<<endl; 
+    cout<<" ╚══════════════════════════════════"<<BLUE<<"●•●"<<CYAN<<"══════════════════════════════════╝"<<endl<<endl; 
     cout<<CYAN<<" Ingrese el nombre del paciente para eliminar: ";
     cin.ignore();
     getline(cin, pacienteEliminado);
@@ -173,15 +173,15 @@ void Eliminar_Paciente(Paciente Registro[], int &cont){
         cout << RED << " No se encontró ningún paciente con ese nombre." << endl;
     }
 
-    cout << endl << " Presione enter para regresar al menú...";
+    cout << endl <<CYAN<< " Presione enter para regresar al menú...";
     cin.ignore(); cin.get();
     system("cls");
 }
 
 void Actualizar_Nombre(Paciente Registro[], int &cont){  
-	cout<<CYAN<<" ╔══════════════════════════════════•●•══════════════════════════════════╗"<<endl;
+	cout<<CYAN<<" ╔══════════════════════════════════"<<BLUE<<"●•●"<<CYAN<<"══════════════════════════════════╗"<<endl;
 	cout<<" ║                          ACTUALIZAR NOMBRE                            ║"<<endl;
-	cout<<" ╚══════════════════════════════════•●•══════════════════════════════════╝"<<endl<<endl;
+	cout<<" ╚══════════════════════════════════"<<BLUE<<"●•●"<<CYAN<<"══════════════════════════════════╝"<<endl<<endl;
 	string Nnombre;
 	cout<<CYAN<<" Ingrese el nombre del paciente: ";
 	cin.ignore();
@@ -208,9 +208,9 @@ void Actualizar_Nombre(Paciente Registro[], int &cont){
 }
 
 void Actualizar_Edad(Paciente Registro[], int &cont){  
-	cout<<CYAN<<" ╔══════════════════════════════════•●•══════════════════════════════════╗"<<endl;
+	cout<<CYAN<<" ╔══════════════════════════════════"<<BLUE<<"●•●"<<CYAN<<"══════════════════════════════════╗"<<endl;
 	cout<<" ║                          ACTUALIZAR EDAD                              ║"<<endl;
-	cout<<" ╚══════════════════════════════════•●•══════════════════════════════════╝"<<endl<<endl;
+	cout<<" ╚══════════════════════════════════"<<BLUE<<"●•●"<<CYAN<<"══════════════════════════════════╝"<<endl<<endl;
 	string Nnombre;
 	cout<<CYAN<<" Ingrese el nombre del paciente: ";
 	cin.ignore();
@@ -253,9 +253,9 @@ void Actualizar_Edad(Paciente Registro[], int &cont){
 }
 
 void Actualizar_Numero(Paciente Registro[], int &cont){  
-	cout<<CYAN<<" ╔══════════════════════════════════•●•══════════════════════════════════╗"<<endl;
+	cout<<CYAN<<" ╔══════════════════════════════════"<<BLUE<<"●•●"<<CYAN<<"══════════════════════════════════╗"<<endl;
 	cout<<" ║                          ACTUALIZAR NUMERO                            ║"<<endl;
-	cout<<" ╚══════════════════════════════════•●•══════════════════════════════════╝"<<endl<<endl;
+	cout<<" ╚══════════════════════════════════"<<BLUE<<"●•●"<<CYAN<<"══════════════════════════════════╝"<<endl<<endl;
 	string Nnombre;
 	cout<<CYAN<<" Ingrese el nombre del paciente: ";
 	cin.ignore();
@@ -300,9 +300,9 @@ void Actualizar_Numero(Paciente Registro[], int &cont){
 }
 
 void Actualizar_Direccion(Paciente Registro[], int &cont){ 
-	cout<<CYAN<<" ╔══════════════════════════════════•●•══════════════════════════════════╗"<<endl;
+	cout<<CYAN<<" ╔══════════════════════════════════"<<BLUE<<"●•●"<<CYAN<<"══════════════════════════════════╗"<<endl;
 	cout<<" ║                         ACTUALIZAR DIRECCION                          ║"<<endl;
-	cout<<" ╚══════════════════════════════════•●•══════════════════════════════════╝"<<endl<<endl;
+	cout<<" ╚══════════════════════════════════"<<BLUE<<"●•●"<<CYAN<<"══════════════════════════════════╝"<<endl<<endl;
 	string Nnombre;
 	cout<<CYAN<<" Ingrese el nombre del paciente: ";
 	cin.ignore();
@@ -333,16 +333,16 @@ void Actualizar_Paciente(Paciente Registro[], int &cont){
 	if(cont!=0){
 		char dato;
 			do{
-			cout<<CYAN<<" ╔══════════════════════════════════•●•══════════════════════════════════╗"<<endl;
+			cout<<CYAN<<" ╔══════════════════════════════════"<<BLUE<<"●•●"<<CYAN<<"══════════════════════════════════╗"<<endl;
 			cout<<" ║                        ACTUALIZAR UN PACIENTE                         ║"<<endl;
-			cout<<" ╚══════════════════════════════════•●•══════════════════════════════════╝"<<endl;
+			cout<<" ╚══════════════════════════════════"<<BLUE<<"●•●"<<CYAN<<"══════════════════════════════════╝"<<endl;
 			cout<<CYAN<<" ══════════════════════════•"<<GREEN<<"DATOS A ACTUALIZAR"<<CYAN<<"•══════════════════════════"<<endl<<endl;
-			cout << " A)Nombre" << endl;
-			cout << " B)Edad" <<endl;
-            cout << " C)Número de celular" <<endl;
-            cout << " D)Dirección"<<endl;
-            cout << " S)Salir"<<endl;
-            cout << " Selecione su opcion: ";
+			cout<< " A)Nombre" << endl;
+			cout<< " B)Edad" <<endl;
+            cout<< " C)Número de celular" <<endl;
+            cout<< " D)Dirección" <<endl;
+            cout<< " S)Salir" <<endl;
+            cout<< " Selecione su opcion: ";
             cin >> dato;
             cout <<endl;
 		
@@ -391,7 +391,7 @@ void Actualizar_Paciente(Paciente Registro[], int &cont){
 		}
 	}while(dato != 's'&&'S');
 	}else{
-		cout<<RED<<"No hay registro de pacientes!!!"<<endl;
+		cout<<RED<<" No hay registro de pacientes!!!"<<endl;
 		cout<<endl;
 		Sleep(1500);system("cls");
 	}
